@@ -1140,8 +1140,8 @@ function Container3() {
 
 function Cell() {
   return (
-    <div className="absolute border border-[#b7babc] border-solid h-[20px] left-0 right-[1042.67px] top-0" data-name="Cell">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.1px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[28.53px]">
+    <div className="absolute border border-[#b7babc] border-solid h-[20px] left-0 right-[1053.67px] top-0" data-name="Cell">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.1px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[27.31px] whitespace-nowrap">
         <p className="leading-[normal]">Ngày</p>
       </div>
     </div>
@@ -1151,7 +1151,7 @@ function Cell() {
 function Cell1() {
   return (
     <div className="absolute border border-[#b7babc] border-solid h-[20px] left-[61.55px] right-[932.25px] top-0" data-name="Cell">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.09px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[91.79px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.09px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[91.79px] whitespace-nowrap">
         <p className="leading-[normal]">Mã chứng khoán</p>
       </div>
     </div>
@@ -1161,7 +1161,7 @@ function Cell1() {
 function Cell2() {
   return (
     <div className="absolute border border-[#b7babc] border-solid h-[20px] left-[171.97px] right-[821.83px] top-0" data-name="Cell">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.1px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[84.06px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.1px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[84.06px] whitespace-nowrap">
         <p className="leading-[normal]">Khối lượng bán</p>
       </div>
     </div>
@@ -1171,7 +1171,7 @@ function Cell2() {
 function Cell3() {
   return (
     <div className="absolute border border-[#b7babc] border-solid h-[20px] left-[282.39px] right-[735.2px] top-0" data-name="Cell">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.1px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[42.11px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.1px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[42.11px] whitespace-nowrap">
         <p className="leading-[normal]">Giá bán</p>
       </div>
     </div>
@@ -1181,7 +1181,7 @@ function Cell3() {
 function Cell4() {
   return (
     <div className="absolute border border-[#b7babc] border-solid h-[20px] left-[369.02px] right-[570.48px] top-0" data-name="Cell">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.09px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[84.39px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.09px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[84.39px] whitespace-nowrap">
         <p className="leading-[normal]">Phí + Thuế bán</p>
       </div>
     </div>
@@ -1203,7 +1203,7 @@ function Icon() {
 function Cell5() {
   return (
     <div className="absolute border border-[#b7babc] border-solid h-[20px] left-[533.74px] right-[428.25px] top-0" data-name="Cell">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%-5.4px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[61.22px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%-5.4px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[61.22px] whitespace-nowrap">
         <p className="leading-[normal]">{`Giá trị bán `}</p>
       </div>
       <div className="-translate-x-1/2 absolute flex h-[13px] items-center justify-center left-[calc(50%+30.51px)] top-[2.5px] w-[11px]">
@@ -1230,7 +1230,7 @@ function Icon1() {
 function Cell6() {
   return (
     <div className="absolute border border-[#b7babc] border-solid h-[20px] left-[675.97px] right-[316.05px] top-0" data-name="Cell">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%-5.4px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[44.95px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%-5.4px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[44.95px] whitespace-nowrap">
         <p className="leading-[normal]">{`Giá vốn `}</p>
       </div>
       <div className="-translate-x-1/2 absolute flex h-[13px] items-center justify-center left-[calc(50%+22.37px)] top-[2.5px] w-[11px]">
@@ -1257,7 +1257,7 @@ function Icon2() {
 function Cell7() {
   return (
     <div className="absolute border border-[#b7babc] border-solid h-[20px] left-[788.17px] right-[174.53px] top-0" data-name="Cell">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%-5.41px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[60.83px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%-5.41px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[60.83px] whitespace-nowrap">
         <p className="leading-[normal]">{`Giá trị vốn `}</p>
       </div>
       <div className="-translate-x-1/2 absolute flex h-[13px] items-center justify-center left-[calc(50%+30.31px)] top-[2.5px] w-[11px]">
@@ -1272,7 +1272,7 @@ function Cell7() {
 function Cell8() {
   return (
     <div className="absolute border border-[#b7babc] border-solid h-[20px] left-[929.69px] right-[99.48px] top-0" data-name="Cell">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.09px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[35.84px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.09px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[35.84px] whitespace-nowrap">
         <p className="leading-[normal]">Lãi/Lỗ</p>
       </div>
     </div>
@@ -1282,7 +1282,7 @@ function Cell8() {
 function Cell9() {
   return (
     <div className="absolute border border-[#b7babc] border-solid h-[20px] left-[1004.74px] right-0 top-0" data-name="Cell">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.09px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[49.03px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[13px] justify-center leading-[0] left-[calc(50%+0.09px)] not-italic text-[#333] text-[11px] text-center top-[9px] w-[49.03px] whitespace-nowrap">
         <p className="leading-[normal]">%Lãi/Lỗ</p>
       </div>
     </div>
@@ -1359,18 +1359,18 @@ function BackgroundBorder1() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[14px] justify-center leading-[0] left-[152.69px] not-italic text-[#545454] text-[11.1px] top-[50px] w-[15.53px]">
         <p className="leading-[18px]">[?]</p>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[17px] justify-center leading-[0] left-[10px] not-italic right-[975.36px] text-[#8229e3] text-[15px] text-center top-[18.5px] uppercase">
+      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[17px] justify-center leading-[0] left-[10px] not-italic text-[#8229e3] text-[15px] top-[18.5px] uppercase whitespace-nowrap">
         <p className="leading-[normal]">LÃI LỖ ĐÃ THỰC HIỆN</p>
       </div>
       <Border />
       <Link5 />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1021.56px] not-italic right-[92.41px] text-[#8229e3] text-[11.5px] text-right top-[200.39px]">
+      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1021.56px] not-italic text-[#8229e3] text-[11.5px] top-[200.39px] whitespace-nowrap">
         <p className="leading-[normal]">Trước</p>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1061.39px] not-italic right-[67.11px] text-[#232323] text-[11px] text-right top-[200.39px]">
+      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1061.39px] not-italic text-[#232323] text-[11px] top-[200.39px] whitespace-nowrap">
         <p className="leading-[normal]">| 1 |</p>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1086.69px] not-italic right-[37.63px] text-[#8229e3] text-[10.8px] text-right top-[200.39px]">
+      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1086.69px] not-italic text-[#8229e3] text-[10.8px] top-[200.39px] whitespace-nowrap">
         <p className="leading-[normal]">Tiếp</p>
       </div>
       <Link6 />

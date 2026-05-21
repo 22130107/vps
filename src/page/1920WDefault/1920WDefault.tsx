@@ -1527,7 +1527,7 @@ function BackgroundBorder1() {
         <p className="leading-[18px]">[?]</p>
       </div>
       <Input1 />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[17px] justify-center leading-[0] left-[10px] not-italic right-[920.3px] text-[#8229e3] text-[15px] text-center top-[18.5px] uppercase">
+      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[17px] justify-center leading-[0] left-[10px] not-italic text-[#8229e3] text-[15px] top-[18.5px] uppercase whitespace-nowrap">
         <p className="leading-[normal]">QUẢN LÝ DANH MỤC TÀI SẢN</p>
       </div>
       <Link4 />
