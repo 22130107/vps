@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import BaoCaoGiaoDich from "../BaoCaoGiaoDich";
+import type { GiaoDich } from "../BaoCaoGiaoDich";
 import svgPaths from "./svg-512w5t9yk0";
 import imgDataHomeLogo from "./a6b6551ca9a3ad36a9a7b415ab1195d06424f390.png";
 import imgLangBgPng from "./d92dda6f1d6c2b719487d3a63b63f34fab0b99f9.png";
@@ -212,7 +215,7 @@ function ItemLink() {
   return (
     <div className="absolute h-[24.2px] left-[86.11px] top-0 w-[80.73px]" data-name="Item → Link">
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[5px] not-italic text-[#363636] text-[11px] top-[12px] w-[61.93px]">
-        <p className="leading-[24.2px] whitespace-pre-wrap">{`Ngôn ngữ   `}</p>
+        <p className="leading-[24.2px] whitespace-pre-wrap">{"Ngôn ngữ   "}</p>
       </div>
       <LangBgPng1 />
     </div>
@@ -264,7 +267,7 @@ function Data() {
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[191.33px] text-[#353535] text-[0px] top-[52px] translate-x-full w-[191.53px]">
         <p className="text-[10.5px]">
-          <span className="leading-[15.4px]">{`Xin Chào, `}</span>
+          <span className="leading-[15.4px]">{"Xin Chào, "}</span>
           <span className="capitalize leading-[15.4px]">Trịnh Hữu Huynh (T99625)</span>
         </p>
       </div>
@@ -1019,7 +1022,7 @@ function TableBodyRow1() {
 
 function BackgroundHorizontalBorder() {
   return (
-    <div className="absolute bg-white border-[#8229e3] border-solid border-t-4 h-[66.5px] left-[390px] right-[390px] top-[563.78px]" data-name="Background+HorizontalBorder">
+    <div className="relative bg-white border-[#8229e3] border-solid border-t-4 h-[66.5px] w-[calc(100%-10px)] mx-[5px]" data-name="Background+HorizontalBorder">
       <TableBodyRow1 />
     </div>
   );
@@ -1119,7 +1122,7 @@ function Link4() {
   );
 }
 
-function Container3() {
+export function Container3() {
   return (
     <div className="absolute h-[29px] left-[5px] overflow-clip right-[5px] top-[20px]" data-name="Container">
       <DivClassBlockSpanLeftBold />
@@ -1306,7 +1309,7 @@ function Row3() {
   );
 }
 
-function TableHeader() {
+export function TableHeader() {
   return (
     <div className="absolute h-[20px] left-[5.5px] right-[5.5px] top-[69.5px]" data-name="Table → Header">
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
@@ -1320,18 +1323,51 @@ function TableHeader() {
   );
 }
 
-function Border() {
-  return (
-    <div className="absolute border-4 border-[#aca8a8] border-solid h-[116px] left-[12.39px] right-[12.39px] top-[63.39px]" data-name="Border">
-      <Container3 />
-      <TableHeader />
-    </div>
-  );
-}
+const initialGiaoDichData: GiaoDich[] = [
+  {
+    ngay: "21/05/2026",
+    maCK: "VPS",
+    laiLo: "lai",
+    khoiLuongBan: 5000,
+    giaBan: 45000,
+    phiThueBan: 337500,
+    giaTriBan: 224662500,
+    giaVon: 40000,
+    giaTriVon: 200000000,
+    laiLoCT: 24662500,
+    phanTramLaiLo: 12.33,
+  },
+  {
+    ngay: "20/05/2026",
+    maCK: "FPT",
+    laiLo: "lai",
+    khoiLuongBan: 2000,
+    giaBan: 135000,
+    phiThueBan: 405000,
+    giaTriBan: 269595000,
+    giaVon: 125000,
+    giaTriVon: 250000000,
+    laiLoCT: 19595000,
+    phanTramLaiLo: 7.84,
+  },
+  {
+    ngay: "19/05/2026",
+    maCK: "VNM",
+    laiLo: "lo",
+    khoiLuongBan: 3000,
+    giaBan: 68000,
+    phiThueBan: 306000,
+    giaTriBan: 203694000,
+    giaVon: 72000,
+    giaTriVon: 216000000,
+    laiLoCT: -12306000,
+    phanTramLaiLo: -5.7,
+  },
+];
 
 function Link5() {
   return (
-    <div className="absolute bg-white border border-[#8229e3] border-solid h-[15px] left-[998.13px] right-[131.43px] top-[194.39px]" data-name="Link">
+    <div className="absolute bg-white border border-[#8229e3] border-solid h-[15px] left-[998.13px] right-[131.43px] bottom-[34px]" data-name="Link">
       <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[calc(50%+0.1px)] not-italic text-[#8229e3] text-[11px] text-center top-[6px] w-[6.64px]">
         <p className="leading-[11px]">{`<`}</p>
       </div>
@@ -1341,7 +1377,7 @@ function Link5() {
 
 function Link6() {
   return (
-    <div className="absolute bg-white border border-[#8229e3] border-solid h-[15px] left-[1115.17px] right-[14.39px] top-[194.39px]" data-name="Link">
+    <div className="absolute bg-white border border-[#8229e3] border-solid h-[15px] left-[1115.17px] right-[14.39px] bottom-[34px]" data-name="Link">
       <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[calc(50%+0.1px)] not-italic text-[#8229e3] text-[11px] text-center top-[6px] w-[6.64px]">
         <p className="leading-[11px]">{`>`}</p>
       </div>
@@ -1350,8 +1386,27 @@ function Link6() {
 }
 
 function BackgroundBorder1() {
+  const [filteredData, setFilteredData] = useState<GiaoDich[]>(initialGiaoDichData);
+
+  const handleXem = (maCK: string) => {
+    let result = initialGiaoDichData;
+    if (maCK) {
+      result = result.filter((row) => row.maCK.includes(maCK.toUpperCase()));
+    }
+    setFilteredData(result);
+  };
+
+  const handleNgayHienTai = () => {
+    const result = initialGiaoDichData.filter((row) => row.ngay === "21/05/2026");
+    setFilteredData(result);
+  };
+
+  const handleXuatExcel = () => {
+    alert("Đang xuất file Excel dữ liệu báo cáo giao dịch...");
+  };
+
   return (
-    <div className="absolute bg-[#f2f2f3] border border-[#e7e8e9] border-solid h-[243.78px] left-[385px] right-[385px] rounded-[4px] top-[295px]" data-name="Background+Border">
+    <div className="relative w-full bg-[#f2f2f3] border border-[#e7e8e9] border-solid min-h-[243.78px] h-fit pb-[65px] rounded-[4px]" data-name="Background+Border">
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[14px] justify-center leading-[0] left-[10px] not-italic text-[#545454] text-[12px] top-[50px] w-[59.54px]">
         <p className="leading-[18px]">{`Tài khoản `}</p>
       </div>
@@ -1362,15 +1417,24 @@ function BackgroundBorder1() {
       <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[17px] justify-center leading-[0] left-[10px] not-italic text-[#8229e3] text-[15px] top-[18.5px] uppercase whitespace-nowrap">
         <p className="leading-[normal]">LÃI LỖ ĐÃ THỰC HIỆN</p>
       </div>
-      <Border />
+      
+      <div className="relative pt-[63.39px] px-[12.39px]">
+        <BaoCaoGiaoDich
+          data={filteredData}
+          onXem={handleXem}
+          onNgayHienTai={handleNgayHienTai}
+          onXuatExcel={handleXuatExcel}
+        />
+      </div>
+
       <Link5 />
-      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1021.56px] not-italic text-[#8229e3] text-[11.5px] top-[200.39px] whitespace-nowrap">
+      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1021.56px] not-italic text-[#8229e3] text-[11.5px] bottom-[37px] whitespace-nowrap">
         <p className="leading-[normal]">Trước</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1061.39px] not-italic text-[#232323] text-[11px] top-[200.39px] whitespace-nowrap">
+      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1061.39px] not-italic text-[#232323] text-[11px] bottom-[37px] whitespace-nowrap">
         <p className="leading-[normal]">| 1 |</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1086.69px] not-italic text-[#8229e3] text-[10.8px] top-[200.39px] whitespace-nowrap">
+      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1086.69px] not-italic text-[#8229e3] text-[10.8px] bottom-[37px] whitespace-nowrap">
         <p className="leading-[normal]">Tiếp</p>
       </div>
       <Link6 />
@@ -1435,7 +1499,7 @@ export default function Component1920WDefault() {
       <Navigation1 />
       <Background3 />
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[390px] not-italic right-[401.1px] text-[#333] text-[10.8px] top-[206px]">
-        <p className="leading-[normal] whitespace-pre-wrap">{`HNX: Trước phiên(Nhận lệnh)   HOSE: Trước phiên(Nhận lệnh)   UPCOM: Trước phiên(Nhận lệnh)   BOND-F: Đóng cửa(Dừng nhận lệnh)   BONDL-F: Đóng cửa(Dừng nhận lệnh)   INDEX-F: Đóng cửa(Dừng nhận lệnh)  `}</p>
+        <p className="leading-[normal] whitespace-pre-wrap">{"HNX: Trước phiên(Nhận lệnh)   HOSE: Trước phiên(Nhận lệnh)   UPCOM: Trước phiên(Nhận lệnh)   BOND-F: Đóng cửa(Dừng nhận lệnh)   BONDL-F: Đóng cửa(Dừng nhận lệnh)   INDEX-F: Đóng cửa(Dừng nhận lệnh)   "}</p>
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1212.19px] not-italic right-[574.58px] text-[#8229e3] text-[11px] text-right top-[230.3px] uppercase">
         <p className="leading-[15.4px]">{`DANH MỤC CK CHO VAY `}</p>
@@ -1457,8 +1521,10 @@ export default function Component1920WDefault() {
       </div>
       <Background4 />
       <BackgroundBorder />
-      <BackgroundHorizontalBorder />
-      <BackgroundBorder1 />
+      <div className="absolute left-[385px] right-[385px] top-[295px] flex flex-col gap-[25px] w-[1150px] pb-12">
+        <BackgroundBorder1 />
+        <BackgroundHorizontalBorder />
+      </div>
       <Container4 />
     </div>
   );

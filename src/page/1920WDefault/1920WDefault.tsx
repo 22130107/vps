@@ -211,7 +211,7 @@ function ItemLink() {
   return (
     <div className="absolute h-[24.2px] left-[86.11px] top-0 w-[80.73px]" data-name="Item → Link">
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[5px] not-italic text-[#363636] text-[11px] top-[12px] w-[61.93px]">
-        <p className="leading-[24.2px] whitespace-pre-wrap">{`Ngôn ngữ   `}</p>
+        <p className="leading-[24.2px] whitespace-pre-wrap">{"Ngôn ngữ   "}</p>
       </div>
       <LangBgPng1 />
     </div>
@@ -263,7 +263,7 @@ function Data() {
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[191.33px] text-[#353535] text-[0px] top-[52px] translate-x-full w-[191.53px]">
         <p className="text-[10.5px]">
-          <span className="leading-[15.4px]">{`Xin Chào, `}</span>
+          <span className="leading-[15.4px]">{"Xin Chào, "}</span>
           <span className="capitalize leading-[15.4px]">Trịnh Hữu Huynh (T99625)</span>
         </p>
       </div>
@@ -1595,7 +1595,7 @@ export default function Component1920WDefault() {
       <Navigation1 />
       <Background3 />
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[390px] not-italic right-[401.1px] text-[#333] text-[10.8px] top-[206px]">
-        <p className="leading-[normal] whitespace-pre-wrap">{`HNX: Trước phiên(Nhận lệnh)   HOSE: Trước phiên(Nhận lệnh)   UPCOM: Trước phiên(Nhận lệnh)   BOND-F: Đóng cửa(Dừng nhận lệnh)   BONDL-F: Đóng cửa(Dừng nhận lệnh)   INDEX-F: Đóng cửa(Dừng nhận lệnh)  `}</p>
+        <p className="leading-[normal] whitespace-pre-wrap">{"HNX: Trước phiên(Nhận lệnh)   HOSE: Trước phiên(Nhận lệnh)   UPCOM: Trước phiên(Nhận lệnh)   BOND-F: Đóng cửa(Dừng nhận lệnh)   BONDL-F: Đóng cửa(Dừng nhận lệnh)   INDEX-F: Đóng cửa(Dừng nhận lệnh)   "}</p>
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1212.19px] not-italic right-[574.58px] text-[#8229e3] text-[11px] text-right top-[230.3px] uppercase">
         <p className="leading-[15.4px]">{`DANH MỤC CK CHO VAY `}</p>
