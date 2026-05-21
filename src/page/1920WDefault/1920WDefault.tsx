@@ -1,3 +1,4 @@
+import { Link as RouterLink } from "react-router-dom";
 import svgPaths from "./svg-uq9qecdcq4";
 import imgDataHomeLogo from "./a6b6551ca9a3ad36a9a7b415ab1195d06424f390.png";
 import imgLangBgPng from "./d92dda6f1d6c2b719487d3a63b63f34fab0b99f9.png";
@@ -344,9 +345,9 @@ function List2() {
       <div className="-translate-y-1/2 absolute flex flex-col h-[14px] justify-center left-[529.13px] text-[11.8px] top-[17px] w-[118.26px]">
         <p className="leading-[10px]">Sao kê chứng khoán</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[14px] justify-center left-[681.19px] text-[12px] top-[17px] w-[106.9px]">
+      <RouterLink to="/page2" className="-translate-y-1/2 absolute flex flex-col h-[14px] justify-center left-[681.19px] text-[12px] top-[17px] w-[106.9px] hover:opacity-80 transition-opacity cursor-pointer">
         <p className="leading-[10px]">Lãi lỗ đã thực hiện</p>
-      </div>
+      </RouterLink>
     </div>
   );
 }
@@ -1109,7 +1110,7 @@ function Background6() {
 function Background7() {
   return (
     <div className="absolute bg-[#fef5d4] h-[13px] left-0 top-[3px] flex items-center px-[12px] rounded-[2px]" data-name="Background">
-      <span className="font-['Inter',sans-serif] font-extrabold italic text-[#202020] text-[11.5px] tracking-[0.04em] leading-[normal] whitespace-nowrap">
+      <span className="font-['Inter',sans-serif] font-bold italic text-[#202020] text-[10.5px] tracking-[0.04em] leading-[normal] whitespace-nowrap">
         Đơn vị giá: 1000 đồng - Đơn vị khối lượng: 1 cổ phiếu - Đơn vị tiền : đồng
       </span>
     </div>
@@ -1449,7 +1450,7 @@ function Link6() {
 function Background8() {
   return (
     <div className="absolute bg-[#fef5d4] h-[13px] left-0 top-[113px] flex items-center px-[12px] rounded-[2px]" data-name="Background">
-      <span className="font-['Inter',sans-serif] font-extrabold italic text-[#202020] text-[11.5px] tracking-[0.04em] leading-[normal] whitespace-nowrap">
+      <span className="font-['Inter',sans-serif] font-bold italic text-[#202020] text-[10.5px] tracking-[0.04em] leading-[normal] whitespace-nowrap">
         • Lãi/Lỗ là giá trị tạm tính ở thời điểm hiện tại, chưa bao gồm thuế và phí giao dịch khi Quý khách bán chứng khoán.
       </span>
     </div>
@@ -1471,7 +1472,7 @@ function Icon() {
 function Background9() {
   return (
     <div className="absolute bg-[#fef5d4] h-[13px] left-0 top-[129px] flex items-center gap-[4px] px-[12px] rounded-[2px]" data-name="Background">
-      <span className="font-['Inter',sans-serif] font-extrabold italic text-[#202020] text-[11.5px] tracking-[0.04em] leading-[normal] whitespace-nowrap">
+      <span className="font-['Inter',sans-serif] font-bold italic text-[#202020] text-[10.5px] tracking-[0.04em] leading-[normal] whitespace-nowrap">
         • Giá TB được VPS tính theo phương pháp bình quân gia quyền và chỉ mang tính chất tham khảo.
       </span>
       <div className="-scale-y-100 flex-none flex items-center justify-center w-[11px] h-[13px]">

@@ -1,3 +1,4 @@
+import { Link as RouterLink } from "react-router-dom";
 import svgPaths from "./svg-512w5t9yk0";
 import imgDataHomeLogo from "./a6b6551ca9a3ad36a9a7b415ab1195d06424f390.png";
 import imgLangBgPng from "./d92dda6f1d6c2b719487d3a63b63f34fab0b99f9.png";
@@ -340,9 +341,9 @@ function ItemLink1() {
 function List2() {
   return (
     <div className="absolute h-[34px] left-0 top-0 w-[804.89px]" data-name="List">
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[14px] justify-center leading-[0] left-[17px] not-italic text-[11.8px] text-white top-[17px] w-[145.58px]">
+      <RouterLink to="/" className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[14px] justify-center leading-[0] left-[17px] not-italic text-[11.8px] text-white top-[17px] w-[145.58px] hover:opacity-80 transition-opacity cursor-pointer">
         <p className="leading-[10px]">Quản lý danh mục tài sản</p>
-      </div>
+      </RouterLink>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[14px] justify-center leading-[0] left-[196.38px] not-italic text-[11.8px] text-white top-[17px] w-[96.22px]">
         <p className="leading-[10px]">Dịch vụ tài chính</p>
       </div>
