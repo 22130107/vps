@@ -95,7 +95,7 @@ export default function BaoCaoGiaoDich({
               type="button"
               value="Xem"
               onClick={() => onXem?.(maCK, tuNgay, denNgay)}
-              className="inline-block overflow-clip text-center whitespace-pre w-20 h-5 bg-[rgb(130,_41,_227)] text-white text-[13px] leading-[normal] rounded-[0.625rem] cursor-pointer"
+              className="inline-block font-extrabold overflow-clip text-center whitespace-pre w-20 h-5 bg-[rgb(130,_41,_227)] text-white text-[12.6px] leading-[normal] rounded-[0.625rem] cursor-pointer"
               style={{ appearance: "button", textDecoration: "none" }}
             />
             {" "}
@@ -103,7 +103,7 @@ export default function BaoCaoGiaoDich({
               type="button"
               value="Ngày hiện tại"
               onClick={onNgayHienTai}
-              className="inline-block overflow-clip text-center whitespace-pre w-[120px] h-5 bg-[rgb(127,_127,_127)] text-white text-[13px] leading-[normal] rounded-[0.625rem] cursor-pointer"
+              className="inline-block font-extrabold overflow-clip text-center whitespace-pre w-[120px] h-5 bg-[rgb(127,_127,_127)] text-white text-[12.6px] leading-[normal] rounded-[0.625rem] cursor-pointer"
               style={{ appearance: "button", textDecoration: "none" }}
             />
             <a
