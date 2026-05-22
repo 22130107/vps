@@ -1,3 +1,6 @@
+/* eslint-disable */
+// @ts-nocheck
+import React from 'react';
 import { Link as RouterLink } from "react-router-dom";
 import svgPaths from "./svg-uq9qecdcq4";
 import imgDataHomeLogo from "./a6b6551ca9a3ad36a9a7b415ab1195d06424f390.png";
@@ -12,6 +15,7 @@ import imgRedBulletPng from "./1c213a0db5472f5a6773e5a7883f9f1da015bf8e.png";
 import imgYellowBulletPng from "./1224156319b2da5b28a0c57cc98a9d2dbfe265e7.png";
 import imgDataMarketImgIndex1 from "./e3350fc49a81a7ee42af4bc9b4569580e1426af7.png";
 import imgLink from "./bf19cc4cc52855bd8a47558e5c66ceeab9d1b5f0.png";
+import StockPortfolio from "../StockTable";
 import imgLink1 from "./75af7c6e7f4409cab8691213e7b6748623e86a38.png";
 import imgButton from "./64ee7930a3d7603946020398c23effd6c9591dbe.png";
 import imgButton1 from "./c1252ff7b4d048db2d0c607c4541f5b955cfecdd.png";
@@ -382,10 +386,10 @@ function Data1() {
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[145.55px] text-[#4a4a4a] text-[11px] top-[7px] translate-x-full w-[32px]">
         <p className="leading-[11px]">{`Index `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[109.75px] text-[#333] text-[10.5px] top-[7px] translate-x-full w-[36.92px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[109.75px] text-[#333] text-[11px] top-[7px] translate-x-full w-[36.92px]">
         <p className="leading-[11px]">{`264.37 `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[69.03px] text-[#333] text-[9.6px] top-[7px] translate-x-full w-[28.36px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[69.03px] text-[#333] text-[11px] top-[7px] translate-x-full w-[28.36px]">
         <p className="leading-[11px]">3.04 (</p>
       </div>
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[36.87px] text-[#333] text-[11px] top-[7px] translate-x-full w-[35.07px]">
@@ -410,13 +414,13 @@ function RowData() {
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[2px] text-[11px] top-[9px] w-[38.09px]">
         <p className="leading-[14px]">{`KLGD: `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[46.02px] text-[10px] top-[9px] w-[49.15px]">
-        <p className="leading-[11px]">53741749</p>
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[46.02px] text-[11px] top-[9px] w-[100px]">
+        <p className="leading-[11px]">53,741,749</p>
       </div>
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[119.98px] text-[11px] top-[9px] translate-x-full w-[38.7px]">
         <p className="leading-[14px]">{`GTGD: `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[75.36px] text-[10.3px] top-[9px] translate-x-full w-[73.56px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[75.36px] text-[11px] top-[9px] translate-x-full w-[73.56px]">
         <p className="leading-[11px]">914.65 tỉ đồng</p>
       </div>
     </div>
@@ -459,7 +463,7 @@ function RowData1() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[2px] not-italic text-[#333] text-[11px] top-[9px] w-[40.54px]">
         <p className="leading-[14px]">{`Số GD: `}</p>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[48.47px] not-italic text-[#333] text-[10px] top-[9px] w-[58.33px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[48.47px] not-italic text-[#333] text-[11px] top-[9px] w-[58.33px]">
         <p className="leading-[11px]">914648.132</p>
       </div>
       <GreenBulletPng />
@@ -521,10 +525,10 @@ function Data2() {
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[115.86px] text-[#333] text-[11px] top-[7px] translate-x-full w-[43.03px]">
         <p className="leading-[11px]">{`2027.51 `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[69.03px] text-[#333] text-[10.3px] top-[7px] translate-x-full w-[28.36px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[69.03px] text-[#333] text-[11px] top-[7px] translate-x-full w-[28.36px]">
         <p className="leading-[11px]">1.43 (</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[36.87px] text-[#333] text-[10.1px] top-[7px] translate-x-full w-[35.07px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[36.87px] text-[#333] text-[11px] top-[7px] translate-x-full w-[35.07px]">
         <p className="leading-[11px]">0.07%)</p>
       </div>
     </div>
@@ -546,13 +550,13 @@ function RowData2() {
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[2px] text-[11px] top-[9px] w-[38.09px]">
         <p className="leading-[14px]">{`KLGD: `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[46.02px] text-[9.3px] top-[9px] w-[55.26px]">
-        <p className="leading-[11px]">334087255</p>
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[46.02px] text-[11px] top-[9px] w-[1000px]">
+        <p className="leading-[11px]">334,087,255</p>
       </div>
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[135.28px] text-[11px] top-[9px] translate-x-full w-[38.7px]">
         <p className="leading-[14px]">{`GTGD: `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[90.66px] text-[10.3px] top-[9px] translate-x-full w-[88.86px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[90.66px] text-[11px] top-[9px] translate-x-full w-[88.86px]">
         <p className="leading-[11px]">14,283.38 tỉ đồng</p>
       </div>
     </div>
@@ -595,7 +599,7 @@ function RowData3() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[2px] not-italic text-[#333] text-[11px] top-[9px] w-[40.54px]">
         <p className="leading-[14px]">{`Số GD: `}</p>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[48.47px] not-italic text-[#333] text-[10.3px] top-[9px] w-[70.56px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[48.47px] not-italic text-[#333] text-[11px] top-[9px] w-[70.56px]">
         <p className="leading-[11px]">14283375.171</p>
       </div>
       <GreenBulletPng1 />
@@ -657,10 +661,10 @@ function Data3() {
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[109.75px] text-[#333] text-[11px] top-[7px] translate-x-full w-[36.92px]">
         <p className="leading-[11px]">{`126.02 `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[69.03px] text-[#333] text-[9.8px] top-[7px] translate-x-full w-[28.36px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[69.03px] text-[#333] text-[11px] top-[7px] translate-x-full w-[28.36px]">
         <p className="leading-[11px]">0.82 (</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[36.87px] text-[#333] text-[10px] top-[7px] translate-x-full w-[35.07px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[36.87px] text-[#333] text-[11px] top-[7px] translate-x-full w-[35.07px]">
         <p className="leading-[11px]">0.65%)</p>
       </div>
     </div>
@@ -682,13 +686,13 @@ function RowData4() {
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[2px] text-[11px] top-[9px] w-[38.09px]">
         <p className="leading-[14px]">{`KLGD: `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[46.02px] text-[9.6px] top-[9px] w-[49.15px]">
-        <p className="leading-[11px]">20388621</p>
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[46.02px] text-[11px] top-[9px] w-[100px]">
+        <p className="leading-[11px]">20,388,621</p>
       </div>
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[119.98px] text-[11px] top-[9px] translate-x-full w-[38.7px]">
         <p className="leading-[14px]">{`GTGD: `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[75.36px] text-[10.3px] top-[9px] translate-x-full w-[73.56px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[75.36px] text-[11px] top-[9px] translate-x-full w-[73.56px]">
         <p className="leading-[11px]">299.66 tỉ đồng</p>
       </div>
     </div>
@@ -731,7 +735,7 @@ function RowData5() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[2px] not-italic text-[#333] text-[11px] top-[9px] w-[40.54px]">
         <p className="leading-[14px]">{`Số GD: `}</p>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[48.47px] not-italic text-[#333] text-[10px] top-[9px] w-[57.72px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[48.47px] not-italic text-[#333] text-[11px] top-[9px] w-[57.72px]">
         <p className="leading-[11px]">299655.110</p>
       </div>
       <GreenBulletPng2 />
@@ -1010,7 +1014,7 @@ function TableBodyRow1() {
 
 function BackgroundHorizontalBorder() {
   return (
-    <div className="absolute bg-white border-[#8229e3] border-solid border-t-4 h-[66.5px] left-[390px] right-[390px] top-[648.77px]" data-name="Background+HorizontalBorder">
+    <div className="relative bg-white border-[#8229e3] border-solid border-t-4 h-[66.5px] w-[calc(100%-10px)] mx-[5px]" data-name="Background+HorizontalBorder">
       <TableBodyRow1 />
     </div>
   );
@@ -1510,15 +1514,17 @@ function Tabpanel() {
 
 function Border() {
   return (
-    <div className="absolute border-4 border-[#aca8a8] border-solid h-[194px] left-[12.39px] right-[12.39px] top-[95.38px]" data-name="Border">
-      <Tabpanel />
+    <div className="relative border-4 border-[#aca8a8] border-solid h-fit pb-4 mt-[95.38px] mx-[12.39px]" data-name="Border">
+      <div className="mt-[22px] mx-[5px]">
+        <StockPortfolio />
+      </div>
     </div>
   );
 }
 
 function BackgroundBorder1() {
   return (
-    <div className="absolute bg-[#f2f2f3] border border-[#e7e8e9] border-solid h-[328.77px] left-[385px] right-[385px] rounded-[4px] top-[295px]" data-name="Background+Border">
+    <div className="relative bg-[#f2f2f3] border border-[#e7e8e9] border-solid h-fit pb-[20px] w-full rounded-[4px]" data-name="Background+Border">
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[14px] justify-center leading-[0] left-[10px] not-italic text-[#545454] text-[12px] top-[50px] w-[59.54px]">
         <p className="leading-[18px]">{`Tài khoản `}</p>
       </div>
@@ -1617,8 +1623,10 @@ export default function Component1920WDefault() {
       </div>
       <Background4 />
       <BackgroundBorder />
-      <BackgroundHorizontalBorder />
-      <BackgroundBorder1 />
+      <div className="absolute left-[385px] right-[385px] top-[295px] flex flex-col gap-[25px] w-[1150px] pb-12">
+        <BackgroundBorder1 />
+        <BackgroundHorizontalBorder />
+      </div>
       <Container3 />
     </div>
   );

@@ -1021,6 +1021,7 @@ function TableBodyRow1() {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function BackgroundHorizontalBorder() {
   return (
     <div className="relative bg-white border-[#8229e3] border-solid border-t-4 h-[66.5px] w-[calc(100%-10px)] mx-[5px]" data-name="Background+HorizontalBorder">

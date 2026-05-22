@@ -1,4 +1,3 @@
-import React from 'react';
 
 interface StockData {
   id: number;
@@ -22,7 +21,6 @@ interface StockPortfolioProps {
   totalProfitLoss?: string;
   totalProfitLossPercent?: string;
   currentPage?: number;
-  totalPages?: number;
   onPrevPage?: () => void;
   onNextPage?: () => void;
   onSearchChange?: (value: string) => void;
@@ -67,7 +65,6 @@ export default function StockPortfolio({
   totalProfitLoss = '4,184',
   totalProfitLossPercent = '3.98%',
   currentPage = 1,
-  totalPages = 1,
   onPrevPage,
   onNextPage,
   onSearchChange,
@@ -76,17 +73,17 @@ export default function StockPortfolio({
   return (
     <div className="font-bold h-fit text-[rgb(34,_34,_34)] text-[12px] leading-[normal] w-fit max-w-full mx-auto" style={{ fontFamily: 'Verdana, Arial, sans-serif', textDecoration: 'none' }}>
       {/* Header with search */}
-      <div className="items-center flex justify-between flex-wrap">
-        <span className="self-start block grow italic text-left mt-[3px] bg-[rgb(254,_245,_212)] text-[rgb(40,_40,_40)] basis-[0%] text-[11px] shrink-0 min-w-0">
+      <div className="flex justify-between items-start mb-[15px] w-full">
+        <b className="italic mt-[3px] bg-[rgb(254,_245,_212)] text-[rgb(40,_40,_40)] text-[11px] w-[552px] inline-block text-left px-1">
           Đơn vị giá: 1000 đồng - Đơn vị khối lượng: 1 cổ phiếu - Đơn vị tiền : đồng
-        </span>
-        <div className="flex grow mb-[15px] basis-[0%] gap-[10px] shrink-0">
-          <label className="self-center block text-right whitespace-nowrap">Mã chứng khoán</label>
+        </b>
+        <div className="flex items-center gap-[10px]">
+          <label className="whitespace-nowrap font-bold text-[#222] text-[14px] font-['Inter',sans-serif]">Mã chứng khoán</label>
           <input
             type="text"
             value={searchValue}
             onChange={(e) => onSearchChange?.(e.target.value)}
-            className="border block font-normal overflow-clip uppercase w-[100px] max-w-[150px] bg-white border-[rgb(177,_177,_177)] text-black pt-[6px] pr-[10px] pb-[6px] pl-[10px] rounded-[0.625rem]"
+            className="border block font-normal uppercase w-[190px] h-[30px] bg-white border-[#b1b1b1] text-black px-[10px] rounded-[10px] outline-none"
           />
         </div>
       </div>
@@ -118,45 +115,45 @@ export default function StockPortfolio({
             <col style={{ width: '53px' }} />
             <col style={{ width: '58px' }} />
           </colgroup>
-          <thead className="bg-repeat-x table-header-group align-middle bg-[rgb(222,_231,_231)]" style={{ backgroundImage: 'url("https://storage.googleapis.com/download/storage/v1/b/prd-storytodesign.appspot.com/o/h2d-ext-asset%2F9b943d9b87ea0d557bed1733bdede386fef42e92.png?generation=1779367253333524&alt=media")' }}>
-            <tr className="table-row align-middle">
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">STT</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">Mã CK</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">Tổng</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">Có thể bán</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">KL<br />FS</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">CP<br />Cổ tức thưởng</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">Không<br />khả dụng</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">Hưởng<br />quyền</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">CK bán<br />chờ khớp</th>
-              <th colSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">T2</th>
-              <th colSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">T1</th>
-              <th colSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">T0</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">Giá TB</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">Giá trị</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">Giá TT</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">Giá trị TT</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">Lãi/Lỗ<br />dự tính</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">%lãi/Lỗ<br />dự tính</th>
-              <th rowSpan={2} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">Đặt Lệnh</th>
+          <thead className="h-[40px] bg-repeat-x table-header-group align-middle bg-[rgb(222,_231,_231)]" style={{ backgroundImage: 'url("https://storage.googleapis.com/download/storage/v1/b/prd-storytodesign.appspot.com/o/h2d-ext-asset%2F9b943d9b87ea0d557bed1733bdede386fef42e92.png?generation=1779367253333524&alt=media")' }}>
+            <tr className="table-row align-middle h-[20px]">
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">STT</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Mã CK</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Tổng</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Có thể bán</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">KL<br />FS</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">CP<br />Cổ tức thưởng</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Không<br />khả dụng</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Hưởng<br />quyền</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">CK bán<br />chờ khớp</th>
+              <th colSpan={2} className="h-[20px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">T2</th>
+              <th colSpan={2} className="h-[20px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">T1</th>
+              <th colSpan={2} className="h-[20px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">T0</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Giá TB</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Giá trị</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Giá TT</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Giá trị TT</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Lãi/Lỗ<br />dự tính</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">%lãi/Lỗ<br />dự tính</th>
+              <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Đặt Lệnh</th>
             </tr>
-            <tr className="table-row align-middle">
-              <th className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">CK mua</th>
-              <th className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">CK bán</th>
-              <th className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">CK mua</th>
-              <th className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">CK bán</th>
-              <th className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">CK mua</th>
-              <th className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]">CK bán</th>
+            <tr className="table-row align-middle h-[20px]">
+              <th className="h-[20px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">CK mua</th>
+              <th className="h-[20px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">CK bán</th>
+              <th className="h-[20px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">CK mua</th>
+              <th className="h-[20px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">CK bán</th>
+              <th className="h-[20px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">CK mua</th>
+              <th className="h-[20px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">CK bán</th>
             </tr>
           </thead>
           <tbody className="table-row-group align-middle">
             <tr className="table-row align-middle bg-[rgb(224,_224,_224)]">
-              <td colSpan={15} className="border table-cell text-left align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(0,_170,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">TỔNG CỘNG:</td>
-              <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">{totalValue}</td>
+              <td colSpan={16} className="border table-cell text-left align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(0,_170,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 font-bold uppercase">TỔNG CỘNG:</td>
+              <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 font-bold">{totalValue}</td>
               <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1"></td>
-              <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">{totalMarketValue}</td>
-              <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(0,_170,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">{totalProfitLoss}</td>
-              <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(0,_170,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">{totalProfitLossPercent}</td>
+              <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 font-bold">{totalMarketValue}</td>
+              <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(0,_170,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 font-bold">{totalProfitLoss}</td>
+              <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(0,_170,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 font-bold">{totalProfitLossPercent}</td>
               <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(180,_0,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1"></td>
             </tr>
             {data.map((stock) => (
@@ -227,17 +224,12 @@ export default function StockPortfolio({
       </div>
 
       {/* Footer notes */}
-      <div className="clear-both w-full">
-        <div className="italic mt-[3px] bg-[rgb(254,_245,_212)] text-[rgb(40,_40,_40)] text-[11px] mb-1">
-          <b className="italic">• Lãi/Lỗ</b> là giá trị tạm tính ở thời điểm hiện tại, chưa bao gồm thuế và phí giao dịch khi Quý khách bán chứng khoán.
+      <div className="clear-both w-full flex flex-col items-start mt-[3px]">
+        <div className="italic bg-[rgb(254,_245,_212)] text-[rgb(40,_40,_40)] text-[11px] px-1">
+          • Lãi/Lỗ là giá trị tạm tính ở thời điểm hiện tại, chưa bao gồm thuế và phí giao dịch khi Quý khách bán chứng khoán.
         </div>
-        <div className="italic mt-[3px] bg-[rgb(254,_245,_212)] text-[rgb(40,_40,_40)] text-[11px]">
-          <b className="italic text-right">• Giá TB</b> được VPS tính theo phương pháp bình quân gia quyền và chỉ mang tính chất tham khảo.{' '}
-          <span className="italic text-right">
-            <span className="inline-block relative text-right top-px text-[rgb(183,_186,_188)] leading-[11px]" style={{ fontFamily: '"Glyphicons Halflings"', textDecoration: 'none' }}>
-              <span className="text-right origin-[0px_0px] content-['']" style={{ textDecoration: 'rgb(183, 186, 188)' }}></span>
-            </span>
-          </span>
+        <div className="italic bg-[rgb(254,_245,_212)] text-[rgb(40,_40,_40)] text-[11px] px-1">
+          • Giá TB được VPS tính theo phương pháp bình quân gia quyền và chỉ mang tính chất tham khảo.
         </div>
       </div>
     </div>
