@@ -345,7 +345,7 @@ function List2() {
       <div className="-translate-y-1/2 absolute flex flex-col h-[14px] justify-center left-[529.13px] text-[11.8px] top-[17px] w-[118.26px]">
         <p className="leading-[10px]">Sao kê chứng khoán</p>
       </div>
-      <RouterLink to="/page2" className="-translate-y-1/2 absolute flex flex-col h-[14px] justify-center left-[681.19px] text-[12px] top-[17px] w-[106.9px] hover:opacity-80 transition-opacity cursor-pointer">
+      <RouterLink to="/page2" className="-translate-y-1/2 absolute flex flex-col h-[17px] justify-center left-[681.19px] text-[12px] top-[17px] w-[106.9px] hover:opacity-80 transition-opacity cursor-pointer">
         <p className="leading-[10px]">Lãi lỗ đã thực hiện</p>
       </RouterLink>
     </div>
@@ -1019,7 +1019,7 @@ function BackgroundHorizontalBorder() {
 function Container2() {
   return (
     <div className="absolute h-[15px] left-px overflow-auto right-px top-px" data-name="Container">
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[15px] justify-center leading-[0] left-0 not-italic text-[#8229e3] text-[11.9px] top-[7.5px] w-[52.83px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-0 not-italic text-[#8229e3] text-[11.9px] top-[7.5px] w-[52.83px]">
         <p className="leading-[normal]">T996251</p>
       </div>
     </div>
@@ -1603,7 +1603,7 @@ export default function Component1920WDefault() {
       <Button />
       <Button1 />
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[390px] not-italic right-[1442.69px] text-[#337ab7] text-[10px] text-center top-[233px] uppercase">
-        <p className="leading-[14px]">TIN MỚI NHẤT:</p>
+        <p className="leading-[104px]">TIN MỚI NHẤT:</p>
       </div>
       <div className="absolute h-[13px] left-[485.11px] right-[1419.89px] top-[226px]" data-name="Link">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

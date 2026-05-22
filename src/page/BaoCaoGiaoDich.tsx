@@ -62,7 +62,7 @@ export default function BaoCaoGiaoDich({
               type="text"
               value={maCK}
               onChange={(e) => setMaCK(e.target.value.toUpperCase())}
-              className="inline-block font-normal overflow-clip uppercase w-20 ml-[8%] bg-white border-[rgb(118,_118,_118)] border-[2px] text-black leading-[normal]"
+              className="inline-block font-normal overflow-clip uppercase w-20 ml-[8%] h-[16px] bg-white border-[rgb(118,_118,_118)] border-[0.5px] text-[13px] text-black leading-[normal] pl-1"
               style={{ borderStyle: "inset", textDecoration: "none" }}
             />
           </div>
@@ -73,8 +73,8 @@ export default function BaoCaoGiaoDich({
               type="text"
               value={tuNgay}
               onChange={(e) => setTuNgay(e.target.value)}
-              className="bg-right bg-no-repeat border inline-block font-normal overflow-clip w-[100px] bg-white border-black text-black leading-[normal]"
-              style={{ backgroundImage: "url(\"https://storage.googleapis.com/download/storage/v1/b/prd-storytodesign.appspot.com/o/h2d-ext-asset%2Fbad5aaba3a4304e8fb493cce754aef7a193da055.png?generation=1779367253303358&alt=media\")", textDecoration: "none" }}
+              className={`bg-right bg-no-repeat border inline-block font-normal overflow-clip w-[100px] h-[16px] border-black text-[12px] text-black leading-[normal] px-1 ${tuNgay ? 'bg-[#e8f0fe]' : 'bg-white pr-[20px]'}`}
+              style={{ backgroundImage: tuNgay ? "none" : "url(\"https://storage.googleapis.com/download/storage/v1/b/prd-storytodesign.appspot.com/o/h2d-ext-asset%2Fbad5aaba3a4304e8fb493cce754aef7a193da055.png?generation=1779367253303358&alt=media\")", textDecoration: "none" }}
             />
           </div>
           <div className="float-left whitespace-nowrap mr-[10px] mb-[2px] text-[rgb(84,_84,_84)] text-[12px] leading-[18px]">
@@ -84,8 +84,8 @@ export default function BaoCaoGiaoDich({
               type="text"
               value={denNgay}
               onChange={(e) => setDenNgay(e.target.value)}
-              className="bg-right bg-no-repeat border inline-block font-normal overflow-clip w-[100px] bg-white border-black text-black leading-[normal]"
-              style={{ backgroundImage: "url(\"https://storage.googleapis.com/download/storage/v1/b/prd-storytodesign.appspot.com/o/h2d-ext-asset%2Fbad5aaba3a4304e8fb493cce754aef7a193da055.png?generation=1779367253303358&alt=media\")", textDecoration: "none" }}
+              className={`bg-right bg-no-repeat border inline-block font-normal overflow-clip w-[100px] h-[16px] border-black text-[11px] text-black leading-[normal] px-1 ${denNgay ? 'bg-[#e8f0fe]' : 'bg-white pr-[20px]'}`}
+              style={{ backgroundImage: denNgay ? "none" : "url(\"https://storage.googleapis.com/download/storage/v1/b/prd-storytodesign.appspot.com/o/h2d-ext-asset%2Fbad5aaba3a4304e8fb493cce754aef7a193da055.png?generation=1779367253303358&alt=media\")", textDecoration: "none" }}
             />
           </div>
         </div>
