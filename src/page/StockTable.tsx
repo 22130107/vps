@@ -5,6 +5,17 @@ interface StockData {
   codeColor?: string;
   total: string;
   canSell: string;
+  klFs?: string;
+  cpCoTucThuong?: string;
+  khongKhaDung?: string;
+  huongQuyen?: string;
+  ckBanChoKhop?: string;
+  t2CkMua?: string;
+  t2CkBan?: string;
+  t1CkMua?: string;
+  t1CkBan?: string;
+  t0CkMua?: string;
+  t0CkBan?: string;
   price: string;
   priceComma: string;
   marketPrice: string;
@@ -95,6 +106,17 @@ export default function StockPortfolio({
       codeColor: 'rgb(0, 0, 0)',
       total: '0',
       canSell: '0',
+      klFs: '',
+      cpCoTucThuong: '',
+      khongKhaDung: '',
+      huongQuyen: '',
+      ckBanChoKhop: '',
+      t2CkMua: '',
+      t2CkBan: '',
+      t1CkMua: '',
+      t1CkBan: '',
+      t0CkMua: '',
+      t0CkBan: '',
       price: '0.000',
       priceComma: '0,000',
       marketPrice: '0.000',
@@ -105,16 +127,6 @@ export default function StockPortfolio({
     }]);
   };
 
-  const handleChange = (id: number, field: keyof StockData, value: string) => {
-    setStocks(prev => prev.map(stock => 
-      stock.id === id ? { ...stock, [field]: value } : stock
-    ));
-  };
-
-  const handleDeleteRow = (id: number) => {
-    setStocks(prev => prev.filter(stock => stock.id !== id));
-  };
-
   const parseNumber = (str: string) => {
     if (!str) return 0;
     const parsed = parseFloat(str.replace(/,/g, ''));
@@ -123,6 +135,29 @@ export default function StockPortfolio({
 
   const formatNumber = (num: number) => {
     return num.toLocaleString('en-US');
+  };
+
+  const handleChange = (id: number, field: keyof StockData, value: string) => {
+    setStocks(prev => prev.map(stock => {
+      if (stock.id !== id) return stock;
+      const updatedStock = { ...stock, [field]: value };
+      
+      if (field === 'total' || field === 'price' || field === 'marketPrice') {
+        const totalNum = parseNumber(updatedStock.total);
+        const priceNum = parseNumber(updatedStock.price);
+        const marketPriceNum = parseNumber(updatedStock.marketPrice);
+        
+        // Giá trị = Tổng * Giá
+        updatedStock.priceComma = formatNumber(totalNum * priceNum);
+        updatedStock.marketPriceComma = formatNumber(totalNum * marketPriceNum);
+      }
+      
+      return updatedStock;
+    }));
+  };
+
+  const handleDeleteRow = (id: number) => {
+    setStocks(prev => prev.filter(stock => stock.id !== id));
   };
 
   const getProfitLossColor = (val: string) => {
@@ -250,17 +285,61 @@ export default function StockPortfolio({
                   className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
                   style={{ textAlign: '-webkit-right' }}
                 >{stock.canSell}</td>
-                <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1"></td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
+                <td 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'klFs', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.klFs}</td>
+                <td 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'cpCoTucThuong', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.cpCoTucThuong}</td>
+                <td 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'khongKhaDung', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.khongKhaDung}</td>
+                <td 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'huongQuyen', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.huongQuyen}</td>
+                <td 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'ckBanChoKhop', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.ckBanChoKhop}</td>
+                <td 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 't2CkMua', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.t2CkMua}</td>
+                <td 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 't2CkBan', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.t2CkBan}</td>
+                <td 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 't1CkMua', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.t1CkMua}</td>
+                <td 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 't1CkBan', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.t1CkBan}</td>
+                <td 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 't0CkMua', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.t0CkMua}</td>
+                <td 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 't0CkBan', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.t0CkBan}</td>
                 <td 
                   contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'price', e.currentTarget.textContent || '')}
                   className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
