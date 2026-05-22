@@ -59,7 +59,6 @@ const defaultData: StockData[] = [
 ];
 
 export default function StockPortfolio({
-  data = defaultData,
   currentPage = 1,
   onPrevPage,
   onNextPage,
@@ -72,7 +71,9 @@ export default function StockPortfolio({
     if (saved) {
       try {
         return JSON.parse(saved);
-      } catch (e) {}
+      } catch {
+        // ignore JSON parse error
+      }
     }
     return defaultData;
   });

@@ -181,16 +181,16 @@ export default function BaoCaoGiaoDich({
             style={{ backgroundImage: "url(\"https://storage.googleapis.com/download/storage/v1/b/prd-storytodesign.appspot.com/o/h2d-ext-asset%2F9b943d9b87ea0d557bed1733bdede386fef42e92.png?generation=1779367253333524&alt=media\")" }}
           >
             <tr className="table-row align-middle">
-              <th className={`${TH} w-[190px] min-w-[190px]`}>Ngày</th>
-              <th className={`${TH} w-[10%]`}>Mã chứng khoán</th>
-              <th className={`${TH} w-[10%]`}>Khối lượng bán</th>
-              <th className={`${TH} w-[68px] min-w-[68px]`}>Giá bán</th>
-              <th className={`${TH} w-[11.5%]`}>Phí + Thuế bán</th>
-              <th className={`${TH} w-[10.3%]`}>Giá trị bán</th>
+              <th className={`${TH} w-[188px] min-w-[188px]`}>Ngày</th>
+              <th className={`${TH} w-[110.42px]`}>Mã chứng khoán</th>
+              <th className={`${TH} w-[110.42px]`}>Khối lượng bán</th>
+              <th className={`${TH} w-[68.4px] min-w-[68px]`}>Giá bán</th>
+              <th className={`${TH} w-[128.25]`}>Phí + Thuế bán</th>
+              <th className={`${TH} w-[113.48]`}>Giá trị bán</th>
               <th className={`${TH} w-[87px] min-w-[87px]`}>Giá vốn</th>
-              <th className={`${TH} w-[10.2%]`}>Giá trị bán</th>
+              <th className={`${TH} w-[113.48]`}>Giá trị bán</th>
               <th className={`${TH} w-[100px] min-w-[100px]`}>Lãi/Lỗ</th>
-              <th className={TH}>%Lãi/Lỗ</th>
+              <th className={`${TH} w-[84px] min-w-[84px]`}>%Lãi/Lỗ</th>
               {isEditingMode && <th className={`${TH} w-[100px]`}>Hành động</th>}
             </tr>
           </thead>
