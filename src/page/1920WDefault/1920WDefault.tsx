@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
-
 import { Link as RouterLink } from "react-router-dom";
+import { createPortal } from "react-dom";
 import svgPaths from "./svg-uq9qecdcq4";
 import imgDataHomeLogo from "./a6b6551ca9a3ad36a9a7b415ab1195d06424f390.png";
 import imgLangBgPng from "./d92dda6f1d6c2b719487d3a63b63f34fab0b99f9.png";
@@ -1580,10 +1580,11 @@ function Group2() {
 
 function Svg2() {
   const handleClick = () => window.dispatchEvent(new Event('toggleEditingMode'));
-  return (
-    <div onClick={handleClick} className="absolute bottom-[35.01px] h-[69px] overflow-clip right-[20.01px] w-[73px] cursor-pointer z-50" data-name="SVG" title="Bật/Tắt chế độ chỉnh sửa">
+  return createPortal(
+    <div onClick={handleClick} className="fixed bottom-[30px] h-[69px] overflow-clip right-[30px] w-[73px] cursor-pointer z-[99999]" data-name="SVG" title="Bật/Tắt chế độ chỉnh sửa">
       <Group2 />
-    </div>
+    </div>,
+    document.body
   );
 }
 

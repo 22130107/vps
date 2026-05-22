@@ -181,7 +181,7 @@ export default function BaoCaoGiaoDich({
             style={{ backgroundImage: "url(\"https://storage.googleapis.com/download/storage/v1/b/prd-storytodesign.appspot.com/o/h2d-ext-asset%2F9b943d9b87ea0d557bed1733bdede386fef42e92.png?generation=1779367253333524&alt=media\")" }}
           >
             <tr className="table-row align-middle">
-              <th className={`${TH} w-[150px] min-w-[150px]`}>Ngày</th>
+              <th className={`${TH} w-[190px] min-w-[190px]`}>Ngày</th>
               <th className={`${TH} w-[10%]`}>Mã chứng khoán</th>
               <th className={`${TH} w-[10%]`}>Khối lượng bán</th>
               <th className={`${TH} w-[68px] min-w-[68px]`}>Giá bán</th>

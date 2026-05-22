@@ -1328,7 +1328,7 @@ export function TableHeader() {
 
 const initialGiaoDichData: GiaoDich[] = [
   {
-    ngay: "21/05/2026",
+    ngay: "21/05/2026 13:59:23",
     maCK: "VPS",
     laiLo: "lai",
     khoiLuongBan: 5000,
@@ -1341,7 +1341,7 @@ const initialGiaoDichData: GiaoDich[] = [
     phanTramLaiLo: 12.33,
   },
   {
-    ngay: "20/05/2026",
+    ngay: "20/05/2026 09:30:12",
     maCK: "FPT",
     laiLo: "lai",
     khoiLuongBan: 2000,
@@ -1354,7 +1354,7 @@ const initialGiaoDichData: GiaoDich[] = [
     phanTramLaiLo: 7.84,
   },
   {
-    ngay: "19/05/2026",
+    ngay: "19/05/2026 13:13:03",
     maCK: "VNM",
     laiLo: "lo",
     khoiLuongBan: 3000,
@@ -1366,6 +1366,19 @@ const initialGiaoDichData: GiaoDich[] = [
     laiLoCT: -12306000,
     phanTramLaiLo: -5.7,
   },
+  {
+    ngay: "19/05/2026 13:00:43",
+    maCK: "VNM",
+    laiLo: "lai",
+    khoiLuongBan: 0,
+    giaBan: 0,
+    phiThueBan: 0,
+    giaTriBan: 0,
+    giaVon: 0,
+    giaTriVon: 0,
+    laiLoCT: 0,
+    phanTramLaiLo: 0,
+  },
 ];
 
 
@@ -1373,7 +1386,16 @@ const initialGiaoDichData: GiaoDich[] = [
 function BackgroundBorder1({ isEditingMode }: { isEditingMode?: boolean }) {
   const [allData, setAllData] = useState<GiaoDich[]>(() => {
     const localData = localStorage.getItem("giaoDichData");
-    if (localData) return JSON.parse(localData);
+    if (localData) {
+      const parsed = JSON.parse(localData);
+      if (parsed.length > 0 && parsed[0].ngay.length <= 10) {
+        // Upgrade format
+        const dataWithId = initialGiaoDichData.map(d => ({ ...d, id: Math.random().toString(36).substr(2, 9) }));
+        localStorage.setItem("giaoDichData", JSON.stringify(dataWithId));
+        return dataWithId;
+      }
+      return parsed;
+    }
     const dataWithId = initialGiaoDichData.map(d => ({ ...d, id: Math.random().toString(36).substr(2, 9) }));
     localStorage.setItem("giaoDichData", JSON.stringify(dataWithId));
     return dataWithId;
