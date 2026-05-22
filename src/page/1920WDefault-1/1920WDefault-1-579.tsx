@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { Link as RouterLink } from "react-router-dom";
 import BaoCaoGiaoDich from "../BaoCaoGiaoDich";
 import type { GiaoDich } from "../BaoCaoGiaoDich";
@@ -268,7 +269,7 @@ function Data() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[191.33px] text-[#353535] text-[0px] top-[52px] translate-x-full w-[191.53px]">
         <p className="text-[10.5px]">
           <span className="leading-[15.4px]">{"Xin Chào, "}</span>
-          <span className="capitalize leading-[15.4px]">Trịnh Hữu Huynh (T99625)</span>
+          <span className="capitalize leading-[15.4px]">CAO TRÍ THÀNH (742332)</span>
         </p>
       </div>
     </div>
@@ -1032,7 +1033,7 @@ function Container2() {
   return (
     <div className="absolute h-[15px] left-px overflow-auto right-px top-px" data-name="Container">
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[15px] justify-center leading-[0] left-0 not-italic text-[#8229e3] text-[11.9px] top-[7.5px] w-[52.83px]">
-        <p className="leading-[normal]">T996251</p>
+        <p className="leading-[normal]">7423321</p>
       </div>
     </div>
   );
@@ -1365,31 +1366,20 @@ const initialGiaoDichData: GiaoDich[] = [
   },
 ];
 
-function Link5() {
-  return (
-    <div className="absolute bg-white border border-[#8229e3] border-solid h-[15px] left-[998.13px] right-[131.43px] bottom-[34px]" data-name="Link">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[calc(50%+0.1px)] not-italic text-[#8229e3] text-[11px] text-center top-[6px] w-[6.64px]">
-        <p className="leading-[11px]">{`<`}</p>
-      </div>
-    </div>
-  );
-}
 
-function Link6() {
-  return (
-    <div className="absolute bg-white border border-[#8229e3] border-solid h-[15px] left-[1115.17px] right-[14.39px] bottom-[34px]" data-name="Link">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[calc(50%+0.1px)] not-italic text-[#8229e3] text-[11px] text-center top-[6px] w-[6.64px]">
-        <p className="leading-[11px]">{`>`}</p>
-      </div>
-    </div>
-  );
-}
 
-function BackgroundBorder1() {
-  const [filteredData, setFilteredData] = useState<GiaoDich[]>(initialGiaoDichData);
+function BackgroundBorder1({ isEditingMode }: { isEditingMode?: boolean }) {
+  const [allData, setAllData] = useState<GiaoDich[]>(() => {
+    const localData = localStorage.getItem("giaoDichData");
+    if (localData) return JSON.parse(localData);
+    const dataWithId = initialGiaoDichData.map(d => ({ ...d, id: Math.random().toString(36).substr(2, 9) }));
+    localStorage.setItem("giaoDichData", JSON.stringify(dataWithId));
+    return dataWithId;
+  });
+  const [filteredData, setFilteredData] = useState<GiaoDich[]>(allData);
 
   const handleXem = (maCK: string) => {
-    let result = initialGiaoDichData;
+    let result = allData;
     if (maCK) {
       result = result.filter((row) => row.maCK.includes(maCK.toUpperCase()));
     }
@@ -1397,12 +1387,49 @@ function BackgroundBorder1() {
   };
 
   const handleNgayHienTai = () => {
-    const result = initialGiaoDichData.filter((row) => row.ngay === "21/05/2026");
+    const result = allData.filter((row) => row.ngay === "21/05/2026");
     setFilteredData(result);
   };
 
   const handleXuatExcel = () => {
     alert("Đang xuất file Excel dữ liệu báo cáo giao dịch...");
+  };
+
+  const handleAddRow = () => {
+    const newRow: GiaoDich = {
+      id: Math.random().toString(36).substr(2, 9),
+      ngay: "",
+      maCK: "",
+      laiLo: "lai",
+      khoiLuongBan: 0,
+      giaBan: 0,
+      phiThueBan: 0,
+      giaTriBan: 0,
+      giaVon: 0,
+      giaTriVon: 0,
+      laiLoCT: 0,
+      phanTramLaiLo: 0,
+    };
+    const updated = [...allData, newRow];
+    setAllData(updated);
+    setFilteredData(updated);
+    localStorage.setItem("giaoDichData", JSON.stringify(updated));
+  };
+
+  const handleEditRow = (id: string, updatedRow: GiaoDich) => {
+    const updated = allData.map(r => r.id === id ? updatedRow : r);
+    setAllData(updated);
+    setFilteredData(updated);
+    localStorage.setItem("giaoDichData", JSON.stringify(updated));
+  };
+
+  const handleDeleteRow = (id: string) => {
+    if (window.confirm("Bạn có chắc muốn xóa dòng này?")) {
+      const updated = allData.filter(r => r.id !== id);
+      setAllData(updated);
+      setFilteredData(updated);
+      localStorage.setItem("giaoDichData", JSON.stringify(updated));
+    }
   };
 
   return (
@@ -1424,6 +1451,10 @@ function BackgroundBorder1() {
           onXem={handleXem}
           onNgayHienTai={handleNgayHienTai}
           onXuatExcel={handleXuatExcel}
+          isEditingMode={isEditingMode}
+          onAddRow={handleAddRow}
+          onEditRow={handleEditRow}
+          onDeleteRow={handleDeleteRow}
         />
       </div>
 
@@ -1475,23 +1506,11 @@ function Group2() {
   );
 }
 
-function Svg2() {
-  return (
-    <div className="absolute bottom-[35.01px] h-[69px] overflow-clip right-[20.01px] w-[73px]" data-name="SVG">
-      <Group2 />
-    </div>
-  );
-}
 
-function Container4() {
-  return (
-    <div className="absolute bottom-[-571.73px] right-[-0.01px] size-[0.01px]" data-name="Container">
-      <Svg2 />
-    </div>
-  );
-}
 
 export default function Component1920WDefault() {
+  const [isEditingMode, setIsEditingMode] = useState(false);
+
   return (
     <div className="bg-white relative size-full" data-name="1920w default">
       <TableBodyRow />
@@ -1522,10 +1541,15 @@ export default function Component1920WDefault() {
       <Background4 />
       <BackgroundBorder />
       <div className="absolute left-[385px] right-[385px] top-[295px] flex flex-col gap-[25px] w-[1150px] pb-12">
-        <BackgroundBorder1 />
+        <BackgroundBorder1 isEditingMode={isEditingMode} />
         <BackgroundHorizontalBorder />
       </div>
-      <Container4 />
+      {createPortal(
+        <div className="fixed bottom-[30px] right-[30px] z-[99999] cursor-pointer w-[73px] h-[69px]" onClick={() => setIsEditingMode(!isEditingMode)}>
+          <Group2 />
+        </div>,
+        document.body
+      )}
     </div>
   );
 }
