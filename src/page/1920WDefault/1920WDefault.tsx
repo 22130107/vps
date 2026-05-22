@@ -378,22 +378,23 @@ function DataMarketImgIndex() {
 function Data1() {
   return (
     <div className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold h-[15px] leading-[0] left-[17px] not-italic right-0 top-0" data-name="Data">
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[2px] text-[#337ab7] text-[0px] top-[7px] w-[27.11px]">
-        <p className="text-[10.8px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[2px] text-[#337ab7] text-[0px] top-[7px] w-auto">
+        <p className="text-[11px]">
           <span className="leading-[11px]">HNX</span>
-          <span className="leading-[11px] text-[#6d6d6a]">:</span>
+          <span className="leading-[11px] text-[#6d6d6a]">: </span>
+          <span className="leading-[11px] text-[#00AA00FF]">Đóng cửa</span>
         </p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[145.55px] text-[#4a4a4a] text-[11px] top-[7px] translate-x-full w-[32px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[145.55px] text-[#00AA00FF] text-[11px] top-[7px] translate-x-full w-[32px]">
         <p className="leading-[11px]">{`Index `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[109.75px] text-[#333] text-[11px] top-[7px] translate-x-full w-[36.92px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[109.75px] text-[#00AA00FF] text-[11px] top-[7px] translate-x-full w-[36.92px]">
         <p className="leading-[11px]">{`264.37 `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[69.03px] text-[#333] text-[11px] top-[7px] translate-x-full w-[28.36px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[69.03px] text-[#00AA00FF] text-[11px] top-[7px] translate-x-full w-[28.36px]">
         <p className="leading-[11px]">3.04 (</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[36.87px] text-[#333] text-[11px] top-[7px] translate-x-full w-[35.07px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[36.87px] text-[#00AA00FF] text-[11px] top-[7px] translate-x-full w-[35.07px]">
         <p className="leading-[11px]">1.16%)</p>
       </div>
     </div>
@@ -514,22 +515,23 @@ function DataMarketImgIndex1() {
 function Data2() {
   return (
     <div className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold h-[15px] leading-[0] left-[17px] not-italic right-0 top-0" data-name="Data">
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[2px] text-[#337ab7] text-[0px] top-[7px] w-[31.4px]">
-        <p className="text-[10px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[2px] text-[#337ab7] text-[0px] top-[7px] w-auto">
+        <p className="text-[11px]">
           <span className="leading-[11px]">VN30</span>
-          <span className="leading-[11px] text-[#6d6d6a]">:</span>
+          <span className="leading-[11px] text-[#6d6d6a]">: </span>
+          <span className="leading-[11px] text-[#00AA00FF]">Đóng cửa</span>
         </p>
       </div>
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[151.66px] text-[#4a4a4a] text-[11px] top-[7px] translate-x-full w-[32px]">
         <p className="leading-[11px]">{`Index `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[115.86px] text-[#333] text-[11px] top-[7px] translate-x-full w-[43.03px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[115.86px] text-[#DE0000FF] text-[11px] top-[7px] translate-x-full w-[43.03px]">
         <p className="leading-[11px]">{`2027.51 `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[69.03px] text-[#333] text-[11px] top-[7px] translate-x-full w-[28.36px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[69.03px] text-[#DE0000FF] text-[11px] top-[7px] translate-x-full w-[28.36px]">
         <p className="leading-[11px]">1.43 (</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[36.87px] text-[#333] text-[11px] top-[7px] translate-x-full w-[35.07px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[36.87px] text-[#DE0000FF] text-[11px] top-[7px] translate-x-full w-[35.07px]">
         <p className="leading-[11px]">0.07%)</p>
       </div>
     </div>
@@ -650,22 +652,23 @@ function DataMarketImgIndex2() {
 function Data3() {
   return (
     <div className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold h-[15px] leading-[0] left-[17px] not-italic right-0 top-0" data-name="Data">
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[2px] text-[#337ab7] text-[0px] top-[7px] w-[44.83px]">
-        <p className="text-[10.8px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[2px] text-[#337ab7] text-[0px] top-[7px] w-auto">
+        <p className="text-[11px]">
           <span className="leading-[11px]">UPCOM</span>
-          <span className="leading-[11px] text-[#6d6d6a]">:</span>
+          <span className="leading-[11px] text-[#6d6d6a]">: </span>
+          <span className="leading-[11px] text-[#00AA00FF]">Đóng cửa</span>
         </p>
       </div>
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[145.55px] text-[#4a4a4a] text-[11px] top-[7px] translate-x-full w-[32px]">
         <p className="leading-[11px]">{`Index `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[109.75px] text-[#333] text-[11px] top-[7px] translate-x-full w-[36.92px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[109.75px] text-[#00AA00FF] text-[11px] top-[7px] translate-x-full w-[36.92px]">
         <p className="leading-[11px]">{`126.02 `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[69.03px] text-[#333] text-[11px] top-[7px] translate-x-full w-[28.36px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[69.03px] text-[#00AA00FF] text-[11px] top-[7px] translate-x-full w-[28.36px]">
         <p className="leading-[11px]">0.82 (</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[36.87px] text-[#333] text-[11px] top-[7px] translate-x-full w-[35.07px]">
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[36.87px] text-[#00AA00FF] text-[11px] top-[7px] translate-x-full w-[35.07px]">
         <p className="leading-[11px]">0.65%)</p>
       </div>
     </div>
