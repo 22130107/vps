@@ -423,8 +423,8 @@ function RowData() {
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[2px] text-[11px] top-[9px] w-[38.09px]">
         <p className="leading-[14px]">{`KLGD: `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[46.02px] text-[11px] top-[9px] w-[49.15px]">
-        <p className="leading-[11px]">53741749</p>
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[46.02px] text-[11px] top-[9px] w-[100px]">
+        <p className="leading-[11px]">53,741,749</p>
       </div>
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[119.98px] text-[11px] top-[9px] translate-x-full w-[38.7px]">
         <p className="leading-[14px]">{`GTGD: `}</p>
@@ -559,8 +559,8 @@ function RowData2() {
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[2px] text-[11px] top-[9px] w-[38.09px]">
         <p className="leading-[14px]">{`KLGD: `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[46.02px] text-[11px] top-[9px] w-[55.26px]">
-        <p className="leading-[11px]">334087255</p>
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[46.02px] text-[11px] top-[9px] w-[100px]">
+        <p className="leading-[11px]">334,087,255</p>
       </div>
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[135.28px] text-[11px] top-[9px] translate-x-full w-[38.7px]">
         <p className="leading-[14px]">{`GTGD: `}</p>
@@ -695,8 +695,8 @@ function RowData4() {
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[2px] text-[11px] top-[9px] w-[38.09px]">
         <p className="leading-[14px]">{`KLGD: `}</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[46.02px] text-[11px] top-[9px] w-[49.15px]">
-        <p className="leading-[11px]">20388621</p>
+      <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[46.02px] text-[11px] top-[9px] w-[100px]">
+        <p className="leading-[11px]">20,388,621</p>
       </div>
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center right-[119.98px] text-[11px] top-[9px] translate-x-full w-[38.7px]">
         <p className="leading-[14px]">{`GTGD: `}</p>
@@ -1378,11 +1378,36 @@ function BackgroundBorder1({ isEditingMode }: { isEditingMode?: boolean }) {
   });
   const [filteredData, setFilteredData] = useState<GiaoDich[]>(allData);
 
-  const handleXem = (maCK: string) => {
+  const handleXem = (maCK: string, tuNgay: string, denNgay: string) => {
     let result = allData;
+    
     if (maCK) {
       result = result.filter((row) => row.maCK.includes(maCK.toUpperCase()));
     }
+
+    const parseDate = (dateStr: string) => {
+      if (!dateStr) return null;
+      const parts = dateStr.split('/');
+      if (parts.length === 3) {
+        return new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
+      }
+      return null;
+    };
+
+    const fromDate = parseDate(tuNgay);
+    const toDate = parseDate(denNgay);
+
+    if (fromDate || toDate) {
+      result = result.filter((row) => {
+        const rowDate = parseDate(row.ngay);
+        if (!rowDate) return true;
+        
+        if (fromDate && rowDate < fromDate) return false;
+        if (toDate && rowDate > toDate) return false;
+        return true;
+      });
+    }
+
     setFilteredData(result);
   };
 

@@ -19,7 +19,7 @@ export interface BaoCaoGiaoDichProps {
   data: GiaoDich[];
   tuNgay?: string;
   denNgay?: string;
-  onXem?: (maCK: string, tuNgay: string, denNgay: string) => void;
+  onXem: (maCK: string, tuNgay: string, denNgay: string) => void;
   onNgayHienTai?: () => void;
   onXuatExcel?: () => void;
   isEditingMode?: boolean;
@@ -28,7 +28,7 @@ export interface BaoCaoGiaoDichProps {
   onDeleteRow?: (id: string) => void;
 }
 
-const fmt = (n: number) => Number(n).toLocaleString("vi-VN");
+const fmt = (n: number) => Number(n).toLocaleString("en-US");
 const fmtPct = (n: number) => `${Number(n).toFixed(2)} %`;
 
 const TD = "border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1";
