@@ -147,9 +147,9 @@ export default function StockPortfolio({
         const priceNum = parseNumber(updatedStock.price);
         const marketPriceNum = parseNumber(updatedStock.marketPrice);
         
-        // Giá trị = Tổng * Giá
-        updatedStock.priceComma = formatNumber(totalNum * priceNum);
-        updatedStock.marketPriceComma = formatNumber(totalNum * marketPriceNum);
+        // Đơn vị giá: 1000 đồng, Đơn vị tiền: đồng -> Giá trị = Tổng * Giá * 1000
+        updatedStock.priceComma = formatNumber(totalNum * priceNum * 1000);
+        updatedStock.marketPriceComma = formatNumber(totalNum * marketPriceNum * 1000);
       }
       
       return updatedStock;
