@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
-import React from 'react';
+
 import { Link as RouterLink } from "react-router-dom";
 import svgPaths from "./svg-uq9qecdcq4";
 import imgDataHomeLogo from "./a6b6551ca9a3ad36a9a7b415ab1195d06424f390.png";
@@ -1579,9 +1579,9 @@ function Group2() {
 }
 
 function Svg2() {
-  const handleClick = () => window.dispatchEvent(new Event('addStockRow'));
+  const handleClick = () => window.dispatchEvent(new Event('toggleEditingMode'));
   return (
-    <div onClick={handleClick} className="absolute bottom-[35.01px] h-[69px] overflow-clip right-[20.01px] w-[73px] cursor-pointer z-50" data-name="SVG" title="Thêm dòng mới">
+    <div onClick={handleClick} className="absolute bottom-[35.01px] h-[69px] overflow-clip right-[20.01px] w-[73px] cursor-pointer z-50" data-name="SVG" title="Bật/Tắt chế độ chỉnh sửa">
       <Group2 />
     </div>
   );

@@ -60,16 +60,13 @@ const defaultData: StockData[] = [
 
 export default function StockPortfolio({
   data = defaultData,
-  totalValue = '105,066',
-  totalMarketValue = '109,250',
-  totalProfitLoss = '4,184',
-  totalProfitLossPercent = '3.98%',
   currentPage = 1,
   onPrevPage,
   onNextPage,
   onSearchChange,
   searchValue = '',
 }: StockPortfolioProps) {
+  const [isEditing, setIsEditing] = useState(false);
   const [stocks, setStocks] = useState<StockData[]>(() => {
     const saved = localStorage.getItem('vps_stocks');
     if (saved) {
@@ -85,25 +82,27 @@ export default function StockPortfolio({
   }, [stocks]);
 
   useEffect(() => {
-    const handleAddRow = () => {
-      setStocks(prev => [...prev, {
-        id: prev.length ? Math.max(...prev.map(s => s.id)) + 1 : 1,
-        code: 'NEW',
-        codeColor: 'rgb(0, 0, 0)',
-        total: '0',
-        canSell: '0',
-        price: '0.000',
-        priceComma: '0,000',
-        marketPrice: '0.000',
-        marketPriceComma: '0,000',
-        profitLoss: '0',
-        profitLossPercent: '0%',
-        profitLossColor: 'rgb(0, 0, 0)',
-      }]);
-    };
-    window.addEventListener('addStockRow', handleAddRow);
-    return () => window.removeEventListener('addStockRow', handleAddRow);
+    const handleToggle = () => setIsEditing(prev => !prev);
+    window.addEventListener('toggleEditingMode', handleToggle);
+    return () => window.removeEventListener('toggleEditingMode', handleToggle);
   }, []);
+
+  const handleAddRow = () => {
+    setStocks(prev => [...prev, {
+      id: prev.length ? Math.max(...prev.map(s => s.id)) + 1 : 1,
+      code: 'NEW',
+      codeColor: 'rgb(0, 0, 0)',
+      total: '0',
+      canSell: '0',
+      price: '0.000',
+      priceComma: '0,000',
+      marketPrice: '0.000',
+      marketPriceComma: '0,000',
+      profitLoss: '0',
+      profitLossPercent: '0%',
+      profitLossColor: 'rgb(0, 0, 0)',
+    }]);
+  };
 
   const handleChange = (id: number, field: keyof StockData, value: string) => {
     setStocks(prev => prev.map(stock => 
@@ -112,13 +111,39 @@ export default function StockPortfolio({
   };
 
   const handleDeleteRow = (id: number) => {
-    if (window.confirm('Bạn có chắc muốn xóa dòng này?')) {
-      setStocks(prev => prev.filter(stock => stock.id !== id));
-    }
+    setStocks(prev => prev.filter(stock => stock.id !== id));
   };
 
+  const parseNumber = (str: string) => {
+    if (!str) return 0;
+    const parsed = parseFloat(str.replace(/,/g, ''));
+    return isNaN(parsed) ? 0 : parsed;
+  };
+
+  const formatNumber = (num: number) => {
+    return num.toLocaleString('en-US');
+  };
+
+  const getProfitLossColor = (val: string) => {
+    const num = parseNumber(val);
+    if (num > 0) return 'rgb(0, 170, 0)';
+    if (num < 0) return 'rgb(222, 0, 0)';
+    return 'rgb(0, 0, 0)';
+  };
+
+  const calcTotalValue = stocks.reduce((sum, stock) => sum + parseNumber(stock.priceComma), 0);
+  const calcTotalMarketValue = stocks.reduce((sum, stock) => sum + parseNumber(stock.marketPriceComma), 0);
+  const calcTotalProfitLoss = stocks.reduce((sum, stock) => sum + parseNumber(stock.profitLoss), 0);
+  const calcTotalProfitLossPercent = calcTotalValue === 0 ? 0 : (calcTotalProfitLoss / calcTotalValue) * 100;
+
+  const totalValue = formatNumber(calcTotalValue);
+  const totalMarketValue = formatNumber(calcTotalMarketValue);
+  const totalProfitLoss = (calcTotalProfitLoss > 0 ? '+' : '') + formatNumber(calcTotalProfitLoss);
+  const totalProfitLossPercent = (calcTotalProfitLossPercent > 0 ? '+' : '') + calcTotalProfitLossPercent.toFixed(2) + '%';
+  const totalColor = calcTotalProfitLoss >= 0 ? 'rgb(0, 170, 0)' : 'rgb(222, 0, 0)';
+
   return (
-    <div className="font-bold h-fit text-[rgb(34,_34,_34)] text-[12px] leading-[normal] w-fit max-w-full mx-auto" style={{ fontFamily: 'Verdana, Arial, sans-serif', textDecoration: 'none' }}>
+    <div className="relative -left-[2px] font-bold h-fit text-[rgb(34,_34,_34)] text-[12px] leading-[normal] w-fit max-w-full mx-auto" style={{ fontFamily: 'Verdana, Arial, sans-serif', textDecoration: 'none' }}>
       {/* Header with search */}
       <div className="flex justify-between items-start mb-[15px] w-full">
         <b className="italic mt-[3px] bg-[rgb(254,_245,_212)] text-[rgb(40,_40,_40)] text-[11px] w-[552px] inline-block text-left px-1">
@@ -161,6 +186,7 @@ export default function StockPortfolio({
             <col style={{ width: '47px' }} />
             <col style={{ width: '53px' }} />
             <col style={{ width: '58px' }} />
+            {isEditing && <col style={{ width: '60px' }} />}
           </colgroup>
           <thead className="h-[40px] bg-repeat-x table-header-group align-middle bg-[rgb(222,_231,_231)]" style={{ backgroundImage: 'url("https://storage.googleapis.com/download/storage/v1/b/prd-storytodesign.appspot.com/o/h2d-ext-asset%2F9b943d9b87ea0d557bed1733bdede386fef42e92.png?generation=1779367253333524&alt=media")' }}>
             <tr className="table-row align-middle h-[20px]">
@@ -183,6 +209,7 @@ export default function StockPortfolio({
               <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Lãi/Lỗ<br />dự tính</th>
               <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">%lãi/Lỗ<br />dự tính</th>
               <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">Đặt Lệnh</th>
+              {isEditing && <th rowSpan={2} className="h-[40px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap text-red-600">Thao tác</th>}
             </tr>
             <tr className="table-row align-middle h-[20px]">
               <th className="h-[20px] border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] px-[2px] py-0 leading-[11px] whitespace-nowrap">CK mua</th>
@@ -199,26 +226,27 @@ export default function StockPortfolio({
               <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 font-bold">{totalValue}</td>
               <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1"></td>
               <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 font-bold">{totalMarketValue}</td>
-              <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(0,_170,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 font-bold">{totalProfitLoss}</td>
-              <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(0,_170,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 font-bold">{totalProfitLossPercent}</td>
+              <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 font-bold" style={{ color: totalColor }}>{totalProfitLoss}</td>
+              <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 font-bold" style={{ color: totalColor }}>{totalProfitLossPercent}</td>
               <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(180,_0,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1"></td>
+              {isEditing && <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)]"></td>}
             </tr>
             {stocks.map((stock) => (
-              <tr key={stock.id} className="table-row align-middle hover:bg-gray-100" onDoubleClick={() => handleDeleteRow(stock.id)} title="Click đúp chuột vào hàng này để Xóa">
+              <tr key={stock.id} className={`table-row align-middle ${isEditing ? 'hover:bg-gray-100' : ''}`}>
                 <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">{stock.id}</td>
                 <td 
-                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'code', e.currentTarget.textContent || '')}
-                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none uppercase" 
-                  style={{ textAlign: '-webkit-center', color: stock.codeColor }}
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'code', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none uppercase ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-center', color: getProfitLossColor(stock.profitLoss) }}
                 >{stock.code}</td>
                 <td 
-                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'total', e.currentTarget.textContent || '')}
-                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'total', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
                   style={{ textAlign: '-webkit-right' }}
                 >{stock.total}</td>
                 <td 
-                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'canSell', e.currentTarget.textContent || '')}
-                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'canSell', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
                   style={{ textAlign: '-webkit-right' }}
                 >{stock.canSell}</td>
                 <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1"></td>
@@ -233,40 +261,52 @@ export default function StockPortfolio({
                 <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
                 <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
                 <td 
-                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'price', e.currentTarget.textContent || '')}
-                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'price', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
                   style={{ textAlign: '-webkit-right' }}
                 >{stock.price}</td>
                 <td 
-                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'priceComma', e.currentTarget.textContent || '')}
-                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'priceComma', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
                   style={{ textAlign: '-webkit-right' }}
                 >{stock.priceComma}</td>
                 <td 
-                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'marketPrice', e.currentTarget.textContent || '')}
-                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'marketPrice', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
                   style={{ textAlign: '-webkit-right' }}
                 >{stock.marketPrice}</td>
                 <td 
-                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'marketPriceComma', e.currentTarget.textContent || '')}
-                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'marketPriceComma', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
                   style={{ textAlign: '-webkit-right' }}
                 >{stock.marketPriceComma}</td>
                 <td 
-                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'profitLoss', e.currentTarget.textContent || '')}
-                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
-                  style={{ textAlign: '-webkit-right', color: stock.profitLossColor }}
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'profitLoss', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right', color: getProfitLossColor(stock.profitLoss) }}
                 >{stock.profitLoss}</td>
                 <td 
-                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'profitLossPercent', e.currentTarget.textContent || '')}
-                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
-                  style={{ textAlign: '-webkit-right', color: stock.profitLossColor }}
+                  contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'profitLossPercent', e.currentTarget.textContent || '')}
+                  className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
+                  style={{ textAlign: '-webkit-right', color: getProfitLossColor(stock.profitLossPercent) }}
                 >{stock.profitLossPercent}</td>
                 <td className="border table-cell text-center align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(180,_0,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">
                   <a className="text-center underline uppercase bg-[rgb(177,_19,_43)] text-white pt-1 pr-2 pb-1 pl-2 cursor-pointer" style={{ textDecoration: 'underline' }}>BÁN</a>
                 </td>
+                {isEditing && (
+                  <td className="border table-cell text-center align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">
+                    <button onClick={() => handleDeleteRow(stock.id)} className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded cursor-pointer">Xóa</button>
+                  </td>
+                )}
               </tr>
             ))}
+            {isEditing && (
+              <tr className="table-row align-middle bg-white">
+                <td colSpan={23} className="border table-cell text-center align-middle border-[rgb(183,_186,_188)] py-2">
+                  <button onClick={handleAddRow} className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded cursor-pointer font-normal">+ Thêm dòng mới</button>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

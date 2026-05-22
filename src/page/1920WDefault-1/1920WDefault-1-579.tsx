@@ -1572,7 +1572,7 @@ export default function Component1920WDefault() {
         <BackgroundHorizontalBorder />
       </div>
       {createPortal(
-        <div className="fixed bottom-[30px] right-[30px] z-[99999] cursor-pointer w-[73px] h-[69px]" onClick={() => { setIsEditingMode(!isEditingMode); window.dispatchEvent(new Event('addStockRow')); }} title="Thêm dòng mới">
+        <div className="fixed bottom-[30px] right-[30px] z-[99999] cursor-pointer w-[73px] h-[69px]" onClick={() => { setIsEditingMode(!isEditingMode); window.dispatchEvent(new Event('toggleEditingMode')); }} title="Bật/Tắt chế độ chỉnh sửa">
           <Group2 />
         </div>,
         document.body
