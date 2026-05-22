@@ -148,8 +148,19 @@ export default function StockPortfolio({
         const marketPriceNum = parseNumber(updatedStock.marketPrice);
         
         // Đơn vị giá: 1000 đồng, Đơn vị tiền: đồng -> Giá trị = Tổng * Giá * 1000
-        updatedStock.priceComma = formatNumber(totalNum * priceNum * 1000);
-        updatedStock.marketPriceComma = formatNumber(totalNum * marketPriceNum * 1000);
+        const priceVal = totalNum * priceNum * 1000;
+        const marketPriceVal = totalNum * marketPriceNum * 1000;
+        const plVal = marketPriceVal - priceVal;
+
+        updatedStock.priceComma = formatNumber(priceVal);
+        updatedStock.marketPriceComma = formatNumber(marketPriceVal);
+        updatedStock.profitLoss = formatNumber(plVal);
+        
+        if (priceVal === 0) {
+          updatedStock.profitLossPercent = '0%';
+        } else {
+          updatedStock.profitLossPercent = (plVal / priceVal * 100).toFixed(2) + '%';
+        }
       }
       
       return updatedStock;
