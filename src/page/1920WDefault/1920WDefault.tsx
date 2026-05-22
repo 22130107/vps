@@ -106,7 +106,7 @@ function Svg() {
 function Background1() {
   return (
     <div className="absolute bg-[#541896] h-[24px] left-[327.55px] right-[432.75px] rounded-br-[11.25px] rounded-tr-[11.25px] top-[4px]" data-name="Background">
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Medium',sans-serif] font-medium h-[10px] justify-center leading-[0] left-[98.95px] not-italic text-[9.5px] text-center text-white top-1/2 w-[183.9px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Medium',sans-serif] font-medium h-[10px] justify-center leading-[0] left-[98.95px] not-italic text-[10px] text-center text-white top-1/2 w-[183.9px]">
         <p className="leading-[10px]">Khám phá SmartOne Web phiên bản mới</p>
       </div>
       <Svg />
@@ -258,7 +258,7 @@ function Data() {
       <Image />
       <Background2 />
       <Image1 />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[201.13px] text-[#353535] text-[10.3px] text-right top-[52px] w-[161.04px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[201.13px] text-[#353535] text-[11px] text-right top-[52px] w-[161.04px]">
         <p className="leading-[15.4px]">{`Thứ Năm, 21-05-2026 20:26:14 `}</p>
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[191.33px] text-[#353535] text-[0px] top-[52px] translate-x-full w-[191.53px]">
@@ -966,7 +966,7 @@ function Data4() {
     <div className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold h-[56.5px] leading-[0] left-[-10px] not-italic right-[248.06px] top-0" data-name="Data">
       <List4 />
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[10px] right-[251.66px] text-[#8229e3] text-[0px] top-[31px]">
-        <p className="text-[10.3px]">
+        <p className="text-[11px]">
           <span className="leading-[14px]">{`Điện thoại hỗ trợ : `}</span>
           <span className="leading-[14px] text-[#171717]">Hotline: 1900 6457; Hà Nội:+84 24 7308 0188; Hồ Chí Minh: +84 28 7308 0188; Đà Nẵng: +84 236 356 5419</span>
         </p>
@@ -1594,7 +1594,7 @@ export default function Component1920WDefault() {
       <Navigation />
       <Navigation1 />
       <Background3 />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[390px] not-italic right-[401.1px] text-[#333] text-[10.8px] top-[206px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[390px] not-italic right-[401.1px] text-[#333] text-[11px] top-[206px]">
         <p className="leading-[normal] whitespace-pre-wrap">{"HNX: Trước phiên(Nhận lệnh)   HOSE: Trước phiên(Nhận lệnh)   UPCOM: Trước phiên(Nhận lệnh)   BOND-F: Đóng cửa(Dừng nhận lệnh)   BONDL-F: Đóng cửa(Dừng nhận lệnh)   INDEX-F: Đóng cửa(Dừng nhận lệnh)   "}</p>
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[1212.19px] not-italic right-[574.58px] text-[#8229e3] text-[11px] text-right top-[230.3px] uppercase">
@@ -1602,7 +1602,7 @@ export default function Component1920WDefault() {
       </div>
       <Button />
       <Button1 />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[390px] not-italic right-[1442.69px] text-[#337ab7] text-[10px] text-center top-[233px] uppercase">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[390px] not-italic right-[1442.69px] text-[#337ab7] text-[11px] text-center top-[233px] uppercase">
         <p className="leading-[104px]">TIN MỚI NHẤT:</p>
       </div>
       <div className="absolute h-[13px] left-[485.11px] right-[1419.89px] top-[226px]" data-name="Link">

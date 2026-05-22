@@ -61,7 +61,7 @@ function TableBodyRowData() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[5px] not-italic text-[#333] text-[0px] top-[9px] w-[156.11px]">
         <p className="text-[10.8px]">
           <span className="leading-[normal]">{`Tài khoản mặc định: `}</span>
-          <span className="leading-[normal] text-[#8229e3]">T996251</span>
+          <span className="leading-[normal] text-[#8229e3]">7423321</span>
           <span className="leading-[normal]">{` `}</span>
         </p>
       </div>
@@ -184,7 +184,7 @@ function Link1() {
   return (
     <div className="-translate-y-1/2 absolute h-[24.2px] left-0 top-1/2 w-[54.95px]" data-name="Link">
       <Svg1 />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[20px] not-italic text-[#363636] text-[10.3px] top-[calc(50%-0.1px)] w-[30.15px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[20px] not-italic text-[#363636] text-[10.5px] top-[calc(50%-0.1px)] w-[30.15px]">
         <p className="leading-[24.2px]">Thoát</p>
       </div>
     </div>
@@ -263,7 +263,7 @@ function Data() {
       <Image />
       <Background2 />
       <Image1 />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[201.13px] text-[#353535] text-[10.5px] text-right top-[52px] w-[161.04px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[201.13px] text-[#353535] text-[11px] text-right top-[52px] w-[161.04px]">
         <p className="leading-[15.4px]">{`Thứ Năm, 21-05-2026 20:26:29 `}</p>
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[191.33px] text-[#353535] text-[0px] top-[52px] translate-x-full w-[191.53px]">
@@ -979,7 +979,7 @@ function Data4() {
     <div className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold h-[56.5px] leading-[0] left-[-10px] not-italic right-[248.06px] top-0" data-name="Data">
       <List4 />
       <div className="-translate-y-1/2 absolute flex flex-col h-[12px] justify-center left-[10px] right-[251.66px] text-[#8229e3] text-[0px] top-[31px]">
-        <p className="text-[10.3px]">
+        <p className="text-[11px]">
           <span className="leading-[14px]">{`Điện thoại hỗ trợ : `}</span>
           <span className="leading-[14px] text-[#171717]">Hotline: 1900 6457; Hà Nội:+84 24 7308 0188; Hồ Chí Minh: +84 28 7308 0188; Đà Nẵng: +84 236 356 5419</span>
         </p>
