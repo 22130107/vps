@@ -4,6 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 import BaoCaoGiaoDich from "../BaoCaoGiaoDich";
 import type { GiaoDich } from "../BaoCaoGiaoDich";
 import svgPaths from "./svg-512w5t9yk0";
+import LiveClock from "../LiveClock";
 import imgDataHomeLogo from "./a6b6551ca9a3ad36a9a7b415ab1195d06424f390.png";
 import imgLangBgPng from "./d92dda6f1d6c2b719487d3a63b63f34fab0b99f9.png";
 import imgImage from "./e7bd66c0037feb3ec6c49079eaeb8462bac628ae.png";
@@ -264,7 +265,7 @@ function Data() {
       <Background2 />
       <Image1 />
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[201.13px] text-[#353535] text-[11px] text-right top-[52px] w-[161.04px]">
-        <p className="leading-[15.4px]">{`Thứ Năm, 21-05-2026 20:26:29 `}</p>
+        <p className="leading-[15.4px]"><LiveClock /></p>
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[191.33px] text-[#353535] text-[0px] top-[52px] translate-x-full w-[191.53px]">
         <p className="text-[10.5px]">
@@ -1571,7 +1572,7 @@ export default function Component1920WDefault() {
         <BackgroundHorizontalBorder />
       </div>
       {createPortal(
-        <div className="fixed bottom-[30px] right-[30px] z-[99999] cursor-pointer w-[73px] h-[69px]" onClick={() => setIsEditingMode(!isEditingMode)}>
+        <div className="fixed bottom-[30px] right-[30px] z-[99999] cursor-pointer w-[73px] h-[69px]" onClick={() => { setIsEditingMode(!isEditingMode); window.dispatchEvent(new Event('addStockRow')); }} title="Thêm dòng mới">
           <Group2 />
         </div>,
         document.body

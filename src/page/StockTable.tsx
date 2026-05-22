@@ -1,4 +1,4 @@
-
+import { useState, useEffect } from 'react';
 interface StockData {
   id: number;
   code: string;
@@ -70,6 +70,53 @@ export default function StockPortfolio({
   onSearchChange,
   searchValue = '',
 }: StockPortfolioProps) {
+  const [stocks, setStocks] = useState<StockData[]>(() => {
+    const saved = localStorage.getItem('vps_stocks');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {}
+    }
+    return defaultData;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('vps_stocks', JSON.stringify(stocks));
+  }, [stocks]);
+
+  useEffect(() => {
+    const handleAddRow = () => {
+      setStocks(prev => [...prev, {
+        id: prev.length ? Math.max(...prev.map(s => s.id)) + 1 : 1,
+        code: 'NEW',
+        codeColor: 'rgb(0, 0, 0)',
+        total: '0',
+        canSell: '0',
+        price: '0.000',
+        priceComma: '0,000',
+        marketPrice: '0.000',
+        marketPriceComma: '0,000',
+        profitLoss: '0',
+        profitLossPercent: '0%',
+        profitLossColor: 'rgb(0, 0, 0)',
+      }]);
+    };
+    window.addEventListener('addStockRow', handleAddRow);
+    return () => window.removeEventListener('addStockRow', handleAddRow);
+  }, []);
+
+  const handleChange = (id: number, field: keyof StockData, value: string) => {
+    setStocks(prev => prev.map(stock => 
+      stock.id === id ? { ...stock, [field]: value } : stock
+    ));
+  };
+
+  const handleDeleteRow = (id: number) => {
+    if (window.confirm('Bạn có chắc muốn xóa dòng này?')) {
+      setStocks(prev => prev.filter(stock => stock.id !== id));
+    }
+  };
+
   return (
     <div className="font-bold h-fit text-[rgb(34,_34,_34)] text-[12px] leading-[normal] w-fit max-w-full mx-auto" style={{ fontFamily: 'Verdana, Arial, sans-serif', textDecoration: 'none' }}>
       {/* Header with search */}
@@ -156,12 +203,24 @@ export default function StockPortfolio({
               <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(0,_170,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 font-bold">{totalProfitLossPercent}</td>
               <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(180,_0,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1"></td>
             </tr>
-            {data.map((stock) => (
-              <tr key={stock.id} className="table-row align-middle">
+            {stocks.map((stock) => (
+              <tr key={stock.id} className="table-row align-middle hover:bg-gray-100" onDoubleClick={() => handleDeleteRow(stock.id)} title="Click đúp chuột vào hàng này để Xóa">
                 <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">{stock.id}</td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-center', color: stock.codeColor }}>{stock.code}</td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}>{stock.total}</td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}>{stock.canSell}</td>
+                <td 
+                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'code', e.currentTarget.textContent || '')}
+                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none uppercase" 
+                  style={{ textAlign: '-webkit-center', color: stock.codeColor }}
+                >{stock.code}</td>
+                <td 
+                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'total', e.currentTarget.textContent || '')}
+                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.total}</td>
+                <td 
+                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'canSell', e.currentTarget.textContent || '')}
+                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.canSell}</td>
                 <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1"></td>
                 <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
                 <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
@@ -173,12 +232,36 @@ export default function StockPortfolio({
                 <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
                 <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
                 <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}></td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}>{stock.price}</td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}>{stock.priceComma}</td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}>{stock.marketPrice}</td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right' }}>{stock.marketPriceComma}</td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right', color: stock.profitLossColor }}>{stock.profitLoss}</td>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1" style={{ textAlign: '-webkit-right', color: stock.profitLossColor }}>{stock.profitLossPercent}</td>
+                <td 
+                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'price', e.currentTarget.textContent || '')}
+                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.price}</td>
+                <td 
+                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'priceComma', e.currentTarget.textContent || '')}
+                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.priceComma}</td>
+                <td 
+                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'marketPrice', e.currentTarget.textContent || '')}
+                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.marketPrice}</td>
+                <td 
+                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'marketPriceComma', e.currentTarget.textContent || '')}
+                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  style={{ textAlign: '-webkit-right' }}
+                >{stock.marketPriceComma}</td>
+                <td 
+                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'profitLoss', e.currentTarget.textContent || '')}
+                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  style={{ textAlign: '-webkit-right', color: stock.profitLossColor }}
+                >{stock.profitLoss}</td>
+                <td 
+                  contentEditable suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'profitLossPercent', e.currentTarget.textContent || '')}
+                  className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none" 
+                  style={{ textAlign: '-webkit-right', color: stock.profitLossColor }}
+                >{stock.profitLossPercent}</td>
                 <td className="border table-cell text-center align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(180,_0,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">
                   <a className="text-center underline uppercase bg-[rgb(177,_19,_43)] text-white pt-1 pr-2 pb-1 pl-2 cursor-pointer" style={{ textDecoration: 'underline' }}>BÁN</a>
                 </td>

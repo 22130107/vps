@@ -16,6 +16,7 @@ import imgYellowBulletPng from "./1224156319b2da5b28a0c57cc98a9d2dbfe265e7.png";
 import imgDataMarketImgIndex1 from "./e3350fc49a81a7ee42af4bc9b4569580e1426af7.png";
 import imgLink from "./bf19cc4cc52855bd8a47558e5c66ceeab9d1b5f0.png";
 import StockPortfolio from "../StockTable";
+import LiveClock from "../LiveClock";
 import imgLink1 from "./75af7c6e7f4409cab8691213e7b6748623e86a38.png";
 import imgButton from "./64ee7930a3d7603946020398c23effd6c9591dbe.png";
 import imgButton1 from "./c1252ff7b4d048db2d0c607c4541f5b955cfecdd.png";
@@ -60,7 +61,7 @@ function TableBodyRowData() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[5px] not-italic text-[#333] text-[0px] top-[9px] w-[156.11px]">
         <p className="text-[10.8px]">
           <span className="leading-[normal]">{`Tài khoản mặc định: `}</span>
-          <span className="leading-[normal] text-[#8229e3]">T996251</span>
+          <span className="leading-[normal] text-[#8229e3]">7423321</span>
           <span className="leading-[normal]">{` `}</span>
         </p>
       </div>
@@ -263,12 +264,12 @@ function Data() {
       <Background2 />
       <Image1 />
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[201.13px] text-[#353535] text-[11px] text-right top-[52px] w-[161.04px]">
-        <p className="leading-[15.4px]">{`Thứ Năm, 21-05-2026 20:26:14 `}</p>
+        <p className="leading-[15.4px]"><LiveClock /></p>
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[191.33px] text-[#353535] text-[0px] top-[52px] translate-x-full w-[191.53px]">
         <p className="text-[10.5px]">
           <span className="leading-[15.4px]">{"Xin Chào, "}</span>
-          <span className="capitalize leading-[15.4px]">Trịnh Hữu Huynh (T99625)</span>
+          <span className="capitalize leading-[15.4px]">CAO TRÍ THÀNH (742332)</span>
         </p>
       </div>
     </div>
@@ -1024,7 +1025,7 @@ function Container2() {
   return (
     <div className="absolute h-[15px] left-px overflow-auto right-px top-px" data-name="Container">
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-0 not-italic text-[#8229e3] text-[11.9px] top-[7.5px] w-[52.83px]">
-        <p className="leading-[normal]">T996251</p>
+        <p className="leading-[normal]">7423321</p>
       </div>
     </div>
   );
@@ -1578,8 +1579,9 @@ function Group2() {
 }
 
 function Svg2() {
+  const handleClick = () => window.dispatchEvent(new Event('addStockRow'));
   return (
-    <div className="absolute bottom-[35.01px] h-[69px] overflow-clip right-[20.01px] w-[73px]" data-name="SVG">
+    <div onClick={handleClick} className="absolute bottom-[35.01px] h-[69px] overflow-clip right-[20.01px] w-[73px] cursor-pointer z-50" data-name="SVG" title="Thêm dòng mới">
       <Group2 />
     </div>
   );
