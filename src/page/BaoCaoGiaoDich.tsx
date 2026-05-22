@@ -186,9 +186,33 @@ export default function BaoCaoGiaoDich({
               <th className={`${TH} w-[110.42px]`}>Khối lượng bán</th>
               <th className={`${TH} w-[68.4px] min-w-[68px]`}>Giá bán</th>
               <th className={`${TH} w-[128.25]`}>Phí + Thuế bán</th>
-              <th className={`${TH} w-[113.48]`}>Giá trị bán</th>
-              <th className={`${TH} w-[87px] min-w-[87px]`}>Giá vốn</th>
-              <th className={`${TH} w-[113.48]`}>Giá trị bán</th>
+              <th className={`${TH} w-[113.48]`}>
+                Giá trị bán
+                {" "}
+                <span className="bold mytooltip cursor-pointer" title="Là số tiền bán chứng khoán thực nhận về tài khoản sau khi đã trừ thuế và phí giao dịch" data-original-title="Là số tiền bán chứng khoán thực nhận về tài khoản sau khi đã trừ thuế và phí giao dịch">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#B7BABC" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                  </svg>
+                </span>
+              </th>
+              <th className={`${TH} w-[87px] min-w-[87px]`}>
+                Giá vốn
+                {" "}
+                <span className="bold mytooltip cursor-pointer" title="Giá vốn" data-original-title="Giá vốn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#B7BABC" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                  </svg>
+                </span>
+              </th>
+              <th className={`${TH} w-[113.48]`}>
+                Giá trị vốn
+                {" "}
+                <span className="bold mytooltip cursor-pointer" title="Giá trị vốn" data-original-title="Giá trị vốn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#B7BABC" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                  </svg>
+                </span>
+              </th>
               <th className={`${TH} w-[100px] min-w-[100px]`}>Lãi/Lỗ</th>
               <th className={`${TH} w-[84px] min-w-[84px]`}>%Lãi/Lỗ</th>
               {isEditingMode && <th className={`${TH} w-[100px]`}>Hành động</th>}
