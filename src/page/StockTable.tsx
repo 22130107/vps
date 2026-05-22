@@ -139,8 +139,8 @@ export default function StockPortfolio({
 
   const totalValue = formatNumber(calcTotalValue);
   const totalMarketValue = formatNumber(calcTotalMarketValue);
-  const totalProfitLoss = (calcTotalProfitLoss > 0 ? '+' : '') + formatNumber(calcTotalProfitLoss);
-  const totalProfitLossPercent = (calcTotalProfitLossPercent > 0 ? '+' : '') + calcTotalProfitLossPercent.toFixed(2) + '%';
+  const totalProfitLoss = formatNumber(calcTotalProfitLoss);
+  const totalProfitLossPercent = calcTotalProfitLossPercent.toFixed(2) + '%';
   const totalColor = calcTotalProfitLoss >= 0 ? 'rgb(0, 170, 0)' : 'rgb(222, 0, 0)';
 
   return (
