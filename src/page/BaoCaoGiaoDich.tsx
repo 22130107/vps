@@ -53,9 +53,29 @@ export default function BaoCaoGiaoDich({
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<Partial<GiaoDich>>({});
 
-  const totalGiaTriBan = data.reduce((s, r) => s + Number(r.giaTriBan || 0), 0);
-  const totalGiaTriVon = data.reduce((s, r) => s + Number(r.giaTriVon || 0), 0);
-  const totalLaiLo = data.reduce((s, r) => s + Number(r.laiLoCT || 0), 0);
+  
+  
+  const computeRow = (r: GiaoDich) => {
+    const kl = Number(r.khoiLuongBan || 0);
+    const giaBan = Number(r.giaBan || 0);
+    const phiThue = Number(r.phiThueBan || 0);
+    const giaVon = Number(r.giaVon || 0);
+
+    // Giá trị bán = (Khối lượng bán × Giá bán) - (Phí + Thuế bán)
+    const giaTriBanC = kl * giaBan - phiThue;
+    // Giá trị vốn = Khối lượng bán × Giá vốn
+    const giaTriVonC = kl * giaVon;
+    // Lãi/Lỗ = Giá trị bán - Giá trị vốn
+    const laiLoC = giaTriBanC - giaTriVonC;
+    // %Lãi/Lỗ = (Lãi/Lỗ ÷ Giá trị vốn) × 100%
+    const pctC = giaTriVonC ? (laiLoC / giaTriVonC) * 100 : 0;
+
+    return { giaTriBanC, giaTriVonC, laiLoC, pctC };
+  };
+
+  const totalGiaTriBan = data.reduce((s, r) => s + computeRow(r).giaTriBanC, 0);
+  const totalGiaTriVon = data.reduce((s, r) => s + computeRow(r).giaTriVonC, 0);
+  const totalLaiLo = data.reduce((s, r) => s + computeRow(r).laiLoC, 0);
   const totalPct = totalGiaTriVon ? (totalLaiLo / totalGiaTriVon) * 100 : 0;
 
   const laiLoColor = (n: number) => n >= 0 ? "text-[rgb(0,_170,_0)]" : "text-[rgb(180,_0,_0)]";
@@ -67,7 +87,13 @@ export default function BaoCaoGiaoDich({
 
   const handleSaveClick = (id: string) => {
     if (onEditRow) {
-      onEditRow(id, editForm as GiaoDich);
+      const updated = { ...(editForm as GiaoDich) } as GiaoDich;
+      const { giaTriBanC, giaTriVonC, laiLoC, pctC } = computeRow(updated);
+      updated.giaTriBan = giaTriBanC;
+      updated.giaTriVon = giaTriVonC;
+      updated.laiLoCT = laiLoC;
+      updated.phanTramLaiLo = pctC;
+      onEditRow(id, updated);
     }
     setEditingId(null);
   };
@@ -262,11 +288,18 @@ export default function BaoCaoGiaoDich({
                   <td className={`${TD} text-right`}>{fmt(row.khoiLuongBan)}</td>
                   <td className={`${TD} text-right`}>{fmt(row.giaBan)}</td>
                   <td className={`${TD} text-right`}>{fmt(row.phiThueBan)}</td>
-                  <td className={`${TD} text-right font-bold`}>{fmt(row.giaTriBan)}</td>
-                  <td className={`${TD} text-right`}>{fmt(row.giaVon)}</td>
-                  <td className={`${TD} text-right font-bold`}>{fmt(row.giaTriVon)}</td>
-                  <td className={`${TD} text-right font-bold ${laiLoColor(row.laiLoCT)}`}>{fmt(row.laiLoCT)}</td>
-                  <td className={`${TD} text-right font-bold ${laiLoColor(row.phanTramLaiLo)}`}>{fmtPct(row.phanTramLaiLo)}</td>
+                  {(() => {
+                    const { giaTriBanC, giaTriVonC, laiLoC, pctC } = computeRow(row);
+                    return (
+                      <>
+                        <td className={`${TD} text-right font-bold`}>{fmt(giaTriBanC)}</td>
+                        <td className={`${TD} text-right`}>{fmt(row.giaVon)}</td>
+                        <td className={`${TD} text-right font-bold`}>{fmt(giaTriVonC)}</td>
+                        <td className={`${TD} text-right font-bold ${laiLoColor(laiLoC)}`}>{fmt(laiLoC)}</td>
+                        <td className={`${TD} text-right font-bold ${laiLoColor(pctC)}`}>{fmtPct(pctC)}</td>
+                      </>
+                    );
+                  })()}
                   {isEditingMode && (
                     <td className={`${TD} text-center space-x-2`}>
                       <button onClick={() => handleEditClick(row)} className="text-blue-600 hover:underline">Sửa</button>
