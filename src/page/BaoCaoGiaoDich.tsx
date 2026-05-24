@@ -261,6 +261,7 @@ export default function BaoCaoGiaoDich({
               const isEditing = isEditingMode && editingId === row.id;
               
               if (isEditing) {
+                const computed = computeRow(editForm as GiaoDich);
                 return (
                   <tr key={row.id || i} className="table-row align-middle bg-[#fffbe6]">
                     <td className={`${TD} p-1`}><input type="text" className="w-full border px-1" value={editForm.ngay || ""} onChange={(e) => handleChange(e, "ngay")} /></td>
@@ -268,11 +269,11 @@ export default function BaoCaoGiaoDich({
                     <td className={`${TD} p-1`}><input type="number" className="w-full border px-1" value={editForm.khoiLuongBan || 0} onChange={(e) => handleChange(e, "khoiLuongBan", true)} /></td>
                     <td className={`${TD} p-1`}><input type="number" className="w-full border px-1" value={editForm.giaBan || 0} onChange={(e) => handleChange(e, "giaBan", true)} /></td>
                     <td className={`${TD} p-1`}><input type="number" className="w-full border px-1" value={editForm.phiThueBan || 0} onChange={(e) => handleChange(e, "phiThueBan", true)} /></td>
-                    <td className={`${TD} p-1`}><input type="number" className="w-full border px-1" value={editForm.giaTriBan || 0} onChange={(e) => handleChange(e, "giaTriBan", true)} /></td>
+                    <td className={`${TD} p-1 text-right font-bold`}>{fmt(computed.giaTriBanC)}</td>
                     <td className={`${TD} p-1`}><input type="number" className="w-full border px-1" value={editForm.giaVon || 0} onChange={(e) => handleChange(e, "giaVon", true)} /></td>
-                    <td className={`${TD} p-1`}><input type="number" className="w-full border px-1" value={editForm.giaTriVon || 0} onChange={(e) => handleChange(e, "giaTriVon", true)} /></td>
-                    <td className={`${TD} p-1`}><input type="number" className="w-full border px-1" value={editForm.laiLoCT || 0} onChange={(e) => handleChange(e, "laiLoCT", true)} /></td>
-                    <td className={`${TD} p-1`}><input type="number" className="w-full border px-1" value={editForm.phanTramLaiLo || 0} onChange={(e) => handleChange(e, "phanTramLaiLo", true)} /></td>
+                    <td className={`${TD} p-1 text-right font-bold`}>{fmt(computed.giaTriVonC)}</td>
+                    <td className={`${TD} p-1 text-right font-bold ${laiLoColor(computed.laiLoC)}`}>{fmt(computed.laiLoC)}</td>
+                    <td className={`${TD} p-1 text-right font-bold ${laiLoColor(computed.pctC)}`}>{fmtPct(computed.pctC)}</td>
                     <td className={`${TD} text-center`}>
                       <button onClick={() => handleSaveClick(row.id as string)} className="text-green-600 font-bold mr-2 hover:underline">Lưu</button>
                       <button onClick={handleCancelClick} className="text-gray-500 font-bold hover:underline">Hủy</button>
