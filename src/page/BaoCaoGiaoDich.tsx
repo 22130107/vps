@@ -93,6 +93,7 @@ export default function BaoCaoGiaoDich({
       updated.giaTriVon = giaTriVonC;
       updated.laiLoCT = laiLoC;
       updated.phanTramLaiLo = pctC;
+      updated.laiLo = laiLoC >= 0 ? "lai" : "lo";
       onEditRow(id, updated);
     }
     setEditingId(null);
@@ -282,25 +283,19 @@ export default function BaoCaoGiaoDich({
                 );
               }
 
+              const { giaTriBanC, giaTriVonC, laiLoC, pctC } = computeRow(row);
               return (
                 <tr key={row.id || i} className="table-row align-middle hover:bg-[#f5f5f5]">
                   <td className={`${TD} text-left`}>{row.ngay}</td>
-                  <td className={`${TD} text-center font-bold ${row.laiLo === "lai" ? "text-[rgb(0,_170,_0)]" : "text-[rgb(180,_0,_0)]"}`}>{row.maCK}</td>
+                  <td className={`${TD} text-center font-bold ${laiLoColor(laiLoC)}`}>{row.maCK}</td>
                   <td className={`${TD} text-right`}>{fmt(row.khoiLuongBan)}</td>
                   <td className={`${TD} text-right`}>{fmt(row.giaBan)}</td>
                   <td className={`${TD} text-right`}>{fmt(row.phiThueBan)}</td>
-                  {(() => {
-                    const { giaTriBanC, giaTriVonC, laiLoC, pctC } = computeRow(row);
-                    return (
-                      <>
-                        <td className={`${TD} text-right font-bold`}>{fmt(giaTriBanC)}</td>
-                        <td className={`${TD} text-right`}>{fmt(row.giaVon)}</td>
-                        <td className={`${TD} text-right font-bold`}>{fmt(giaTriVonC)}</td>
-                        <td className={`${TD} text-right font-bold ${laiLoColor(laiLoC)}`}>{fmt(laiLoC)}</td>
-                        <td className={`${TD} text-right font-bold ${laiLoColor(pctC)}`}>{fmtPct(pctC)}</td>
-                      </>
-                    );
-                  })()}
+                  <td className={`${TD} text-right font-bold`}>{fmt(giaTriBanC)}</td>
+                  <td className={`${TD} text-right`}>{fmt(row.giaVon)}</td>
+                  <td className={`${TD} text-right font-bold`}>{fmt(giaTriVonC)}</td>
+                  <td className={`${TD} text-right font-bold ${laiLoColor(laiLoC)}`}>{fmt(laiLoC)}</td>
+                  <td className={`${TD} text-right font-bold ${laiLoColor(pctC)}`}>{fmtPct(pctC)}</td>
                   {isEditingMode && (
                     <td className={`${TD} text-center space-x-2`}>
                       <button onClick={() => handleEditClick(row)} className="text-blue-600 hover:underline">Sửa</button>
