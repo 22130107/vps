@@ -278,9 +278,9 @@ export default function StockPortfolio({
               <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(180,_0,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1"></td>
               {isEditing && <td className="border table-cell text-right align-middle bg-white border-[rgb(183,_186,_188)]"></td>}
             </tr>
-            {stocks.map((stock) => (
+            {stocks.map((stock, index) => (
               <tr key={stock.id} className={`table-row align-middle ${isEditing ? 'hover:bg-gray-100' : ''}`}>
-                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">{stock.id}</td>
+                <td className="border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">{index + 1}</td>
                 <td 
                   contentEditable={isEditing} suppressContentEditableWarning onBlur={e => handleChange(stock.id, 'code', e.currentTarget.textContent || '')}
                   className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none uppercase ${isEditing ? 'bg-yellow-50' : ''}`} 
