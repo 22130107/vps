@@ -1423,7 +1423,8 @@ function BackgroundBorder1({ isEditingMode }: { isEditingMode?: boolean }) {
 
     const parseDate = (dateStr: string) => {
       if (!dateStr) return null;
-      const parts = dateStr.split('/');
+      const [dmy] = dateStr.split(' ');
+      const parts = dmy.split('/');
       if (parts.length === 3) {
         return new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
       }
@@ -1448,7 +1449,7 @@ function BackgroundBorder1({ isEditingMode }: { isEditingMode?: boolean }) {
   };
 
   const handleNgayHienTai = () => {
-    const result = allData.filter((row) => row.ngay === "21/05/2026");
+    const result = allData.filter((row) => row.ngay.startsWith("21/05/2026"));
     setFilteredData(result);
   };
 
