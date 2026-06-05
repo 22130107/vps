@@ -1406,8 +1406,10 @@ function BackgroundBorder1({ isEditingMode }: { isEditingMode?: boolean }) {
   const sortByNgay = (list: GiaoDich[]) =>
     list.slice().sort((a, b) => {
       const toNum = (s: string) => {
-        const parts = s.split(' ')[0].split('/');
-        return Number(parts[2]) * 1000000 + Number(parts[1]) * 10000 + Number(parts[0]) * 100;
+        const [dmy, hms = '00:00:00'] = s.split(' ');
+        const [d, m, y] = dmy.split('/');
+        const [h, mi, sec] = hms.split(':');
+        return Number(y) * 10000000000 + Number(m) * 100000000 + Number(d) * 1000000 + Number(h) * 10000 + Number(mi) * 100 + Number(sec);
       };
       return toNum(a.ngay) - toNum(b.ngay);
     });
