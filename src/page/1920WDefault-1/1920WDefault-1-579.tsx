@@ -1403,7 +1403,16 @@ function BackgroundBorder1({ isEditingMode }: { isEditingMode?: boolean }) {
     localStorage.setItem("giaoDichData", JSON.stringify(dataWithId));
     return dataWithId;
   });
-  const [filteredData, setFilteredData] = useState<GiaoDich[]>(allData);
+  const sortByNgay = (list: GiaoDich[]) =>
+    list.slice().sort((a, b) => {
+      const toNum = (s: string) => {
+        const parts = s.split(' ')[0].split('/');
+        return Number(parts[2]) * 1000000 + Number(parts[1]) * 10000 + Number(parts[0]) * 100;
+      };
+      return toNum(a.ngay) - toNum(b.ngay);
+    });
+
+  const [filteredData, setFilteredData] = useState<GiaoDich[]>(() => sortByNgay(allData));
 
   const handleXem = (maCK: string, tuNgay: string, denNgay: string) => {
     let result = allData;
@@ -1435,7 +1444,7 @@ function BackgroundBorder1({ isEditingMode }: { isEditingMode?: boolean }) {
       });
     }
 
-    setFilteredData(result);
+    setFilteredData(sortByNgay(result));
   };
 
   const handleNgayHienTai = () => {
