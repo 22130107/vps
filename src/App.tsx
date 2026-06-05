@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Page1 from './page/1920WDefault/1920WDefault';
 import Page2 from './page/1920WDefault-1/1920WDefault-1-579';
 
@@ -17,7 +17,7 @@ function CenterWrapper({ children }: { children: React.ReactNode }) {
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div style={{ overflowX: 'hidden', minHeight: '100vh' }}>
         <CenterWrapper>
           <Routes>
@@ -26,7 +26,7 @@ function App() {
           </Routes>
         </CenterWrapper>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
