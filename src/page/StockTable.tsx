@@ -77,6 +77,7 @@ export default function StockPortfolio({
   searchValue = '',
 }: StockPortfolioProps) {
   const [isEditing, setIsEditing] = useState(false);
+  const [hiddenSellIds, setHiddenSellIds] = useState<number[]>([]);
   const [stocks, setStocks] = useState<StockData[]>(() => {
     const saved = localStorage.getItem('vps_stocks');
     if (saved) {
@@ -169,6 +170,10 @@ export default function StockPortfolio({
 
   const handleDeleteRow = (id: number) => {
     setStocks(prev => prev.filter(stock => stock.id !== id));
+  };
+
+  const toggleSellButton = (id: number) => {
+    setHiddenSellIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   };
 
   const getProfitLossColor = (val: string) => {
@@ -381,8 +386,10 @@ export default function StockPortfolio({
                   className={`border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 outline-none ${isEditing ? 'bg-yellow-50' : ''}`} 
                   style={{ textAlign: '-webkit-right', color: getProfitLossColor(stock.profitLossPercent) }}
                 >{stock.profitLossPercent}</td>
-                <td className="border table-cell text-center align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(180,_0,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">
-                  <a className="text-center underline uppercase bg-[rgb(177,_19,_43)] text-white pt-1 pr-2 pb-1 pl-2 cursor-pointer" style={{ textDecoration: 'underline' }}>BÁN</a>
+                <td onClick={() => toggleSellButton(stock.id)} className="border table-cell text-center align-middle bg-white border-[rgb(183,_186,_188)] text-[rgb(180,_0,_0)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1 cursor-pointer">
+                  {!hiddenSellIds.includes(stock.id) && (
+                    <a onClick={(e) => { e.stopPropagation(); toggleSellButton(stock.id); }} className="text-center underline uppercase bg-[rgb(177,_19,_43)] text-white pt-1 pr-2 pb-1 pl-2 cursor-pointer" style={{ textDecoration: 'underline' }}>BÁN</a>
+                  )}
                 </td>
                 {isEditing && (
                   <td className="border table-cell text-center align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1">
