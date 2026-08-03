@@ -1025,7 +1025,6 @@ function TableBodyRow1() {
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function BackgroundHorizontalBorder() {
   return (
     <div className="relative bg-white border-[#8229e3] border-solid border-t-4 h-[66.5px] w-[calc(100%-10px)] mx-[5px]" data-name="Background+HorizontalBorder">
@@ -1336,12 +1335,12 @@ const initialGiaoDichData: GiaoDich[] = [
     laiLo: "lai",
     khoiLuongBan: 5000,
     giaBan: 45000,
-    phiThueBan: 337500,
-    giaTriBan: 224662500,
+    phiThueBan: 562500,
+    giaTriBan: 224437500,
     giaVon: 40000,
     giaTriVon: 200000000,
-    laiLoCT: 24662500,
-    phanTramLaiLo: 12.33,
+    laiLoCT: 24437500,
+    phanTramLaiLo: 12.22,
   },
   {
     ngay: "20/05/2026 09:30:12",
@@ -1349,12 +1348,12 @@ const initialGiaoDichData: GiaoDich[] = [
     laiLo: "lai",
     khoiLuongBan: 2000,
     giaBan: 135000,
-    phiThueBan: 405000,
-    giaTriBan: 269595000,
+    phiThueBan: 675000,
+    giaTriBan: 269325000,
     giaVon: 125000,
     giaTriVon: 250000000,
-    laiLoCT: 19595000,
-    phanTramLaiLo: 7.84,
+    laiLoCT: 19325000,
+    phanTramLaiLo: 7.73,
   },
   {
     ngay: "19/05/2026 13:13:03",
@@ -1362,12 +1361,12 @@ const initialGiaoDichData: GiaoDich[] = [
     laiLo: "lo",
     khoiLuongBan: 3000,
     giaBan: 68000,
-    phiThueBan: 306000,
-    giaTriBan: 203694000,
+    phiThueBan: 510000,
+    giaTriBan: 203490000,
     giaVon: 72000,
     giaTriVon: 216000000,
-    laiLoCT: -12306000,
-    phanTramLaiLo: -5.7,
+    laiLoCT: -12510000,
+    phanTramLaiLo: -5.79,
   },
   {
     ngay: "19/05/2026 13:00:43",

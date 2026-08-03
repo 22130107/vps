@@ -30,6 +30,7 @@ export interface BaoCaoGiaoDichProps {
 
 const fmt = (n: number) => Number(n).toLocaleString("en-US");
 const fmtPct = (n: number) => `${Number(n).toFixed(2)} %`;
+const SELL_FEE_TAX_RATE = 0.0025;
 
 const TD = "border table-cell align-middle bg-white border-[rgb(183,_186,_188)] text-[11px] pt-[6px] pr-1 pb-[6px] pl-1";
 const TH = "border table-cell text-center align-middle border-[rgb(183,_186,_188)] text-[11px] pt-[3px] pr-[2px] pb-[3px] pl-[2px]";
@@ -58,11 +59,11 @@ export default function BaoCaoGiaoDich({
   const computeRow = (r: GiaoDich) => {
     const kl = Number(r.khoiLuongBan || 0);
     const giaBan = Number(r.giaBan || 0);
-    const phiThue = Number(r.phiThueBan || 0);
+    const phiThueC = kl * giaBan * SELL_FEE_TAX_RATE;
     const giaVon = Number(r.giaVon || 0);
 
     // Giá trị bán = (Khối lượng bán × Giá bán) - (Phí + Thuế bán)
-    const giaTriBanC = kl * giaBan - phiThue;
+    const giaTriBanC = kl * giaBan - phiThueC;
     // Giá trị vốn = Khối lượng bán × Giá vốn
     const giaTriVonC = kl * giaVon;
     // Lãi/Lỗ = Giá trị bán - Giá trị vốn
@@ -70,7 +71,7 @@ export default function BaoCaoGiaoDich({
     // %Lãi/Lỗ = (Lãi/Lỗ ÷ Giá trị vốn) × 100%
     const pctC = giaTriVonC ? (laiLoC / giaTriVonC) * 100 : 0;
 
-    return { giaTriBanC, giaTriVonC, laiLoC, pctC };
+    return { phiThueC, giaTriBanC, giaTriVonC, laiLoC, pctC };
   };
 
   const totalGiaTriBan = data.reduce((s, r) => s + computeRow(r).giaTriBanC, 0);
@@ -88,7 +89,8 @@ export default function BaoCaoGiaoDich({
   const handleSaveClick = (id: string) => {
     if (onEditRow) {
       const updated = { ...(editForm as GiaoDich) } as GiaoDich;
-      const { giaTriBanC, giaTriVonC, laiLoC, pctC } = computeRow(updated);
+      const { phiThueC, giaTriBanC, giaTriVonC, laiLoC, pctC } = computeRow(updated);
+      updated.phiThueBan = phiThueC;
       updated.giaTriBan = giaTriBanC;
       updated.giaTriVon = giaTriVonC;
       updated.laiLoCT = laiLoC;
@@ -269,7 +271,7 @@ export default function BaoCaoGiaoDich({
                     <td className={`${TD} p-1`}><input type="text" className="w-full border px-1" value={editForm.maCK || ""} onChange={(e) => handleChange(e, "maCK")} /></td>
                     <td className={`${TD} p-1`}><input type="number" className="w-full border px-1" value={editForm.khoiLuongBan || 0} onChange={(e) => handleChange(e, "khoiLuongBan", true)} /></td>
                     <td className={`${TD} p-1`}><input type="number" className="w-full border px-1" value={editForm.giaBan || 0} onChange={(e) => handleChange(e, "giaBan", true)} /></td>
-                    <td className={`${TD} p-1`}><input type="number" className="w-full border px-1" value={editForm.phiThueBan || 0} onChange={(e) => handleChange(e, "phiThueBan", true)} /></td>
+                    <td className={`${TD} p-1 text-right font-bold`}>{fmt(computed.phiThueC)}</td>
                     <td className={`${TD} p-1 text-right font-bold`}>{fmt(computed.giaTriBanC)}</td>
                     <td className={`${TD} p-1`}><input type="number" className="w-full border px-1" value={editForm.giaVon || 0} onChange={(e) => handleChange(e, "giaVon", true)} /></td>
                     <td className={`${TD} p-1 text-right font-bold`}>{fmt(computed.giaTriVonC)}</td>
@@ -283,14 +285,14 @@ export default function BaoCaoGiaoDich({
                 );
               }
 
-              const { giaTriBanC, giaTriVonC, laiLoC, pctC } = computeRow(row);
+              const { phiThueC, giaTriBanC, giaTriVonC, laiLoC, pctC } = computeRow(row);
               return (
                 <tr key={row.id || i} className="table-row align-middle hover:bg-[#f5f5f5]">
                   <td className={`${TD} text-left`}>{row.ngay}</td>
                   <td className={`${TD} text-center font-bold ${laiLoColor(laiLoC)}`}>{row.maCK}</td>
                   <td className={`${TD} text-right`}>{fmt(row.khoiLuongBan)}</td>
                   <td className={`${TD} text-right`}>{fmt(row.giaBan)}</td>
-                  <td className={`${TD} text-right`}>{fmt(row.phiThueBan)}</td>
+                  <td className={`${TD} text-right`}>{fmt(phiThueC)}</td>
                   <td className={`${TD} text-right font-bold`}>{fmt(giaTriBanC)}</td>
                   <td className={`${TD} text-right`}>{fmt(row.giaVon)}</td>
                   <td className={`${TD} text-right font-bold`}>{fmt(giaTriVonC)}</td>
