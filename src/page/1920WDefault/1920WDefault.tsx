@@ -1,7 +1,32 @@
 /* eslint-disable */
 // @ts-nocheck
 import { Link as RouterLink } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+
+function useAccount() {
+  const [account, setAccount] = useState(() => localStorage.getItem("accountNumber") || "7423321");
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setAccount(localStorage.getItem("accountNumber") || "7423321");
+    };
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("accountChange", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("accountChange", handleStorageChange);
+    };
+  }, []);
+
+  const updateAccount = (newAccount: string) => {
+    setAccount(newAccount);
+    localStorage.setItem("accountNumber", newAccount);
+    window.dispatchEvent(new Event("accountChange"));
+  };
+
+  return [account, updateAccount] as const;
+}
 import svgPaths from "./svg-uq9qecdcq4";
 import imgDataHomeLogo from "./a6b6551ca9a3ad36a9a7b415ab1195d06424f390.png";
 import imgLangBgPng from "./d92dda6f1d6c2b719487d3a63b63f34fab0b99f9.png";
@@ -56,12 +81,13 @@ function Link() {
 }
 
 function TableBodyRowData() {
+  const [account] = useAccount();
   return (
     <div className="absolute border border-solid border-white h-[20px] right-[183.84px] top-[5px] w-[242.91px]" data-name="Table → Body → Row → Data">
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-[5px] not-italic text-[#333] text-[0px] top-[9px] w-[156.11px]">
         <p className="text-[10.8px]">
           <span className="leading-[normal]">{`Tài khoản mặc định: `}</span>
-          <span className="leading-[normal] text-[#8229e3]">7423321</span>
+          <span className="leading-[normal] text-[#8229e3]">{account}</span>
           <span className="leading-[normal]">{` `}</span>
         </p>
       </div>
@@ -255,6 +281,7 @@ function Image1() {
 }
 
 function Data() {
+  const [account] = useAccount();
   return (
     <div className="absolute h-[27px] left-[166px] right-[2px] top-[2px]" data-name="Data">
       <TableBodyRowData />
@@ -269,7 +296,7 @@ function Data() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] not-italic right-[191.33px] text-[#353535] text-[0px] top-[52px] translate-x-full w-[191.53px]">
         <p className="text-[10.5px]">
           <span className="leading-[15.4px]">{"Xin Chào, "}</span>
-          <span className="capitalize leading-[15.4px]">CAO TRÍ THÀNH (742332)</span>
+          <span className="capitalize leading-[15.4px]">{`CAO TRÍ THÀNH (${account.slice(0, 6) || "742332"})`}</span>
         </p>
       </div>
     </div>
@@ -1025,11 +1052,14 @@ function BackgroundHorizontalBorder() {
 }
 
 function Container2() {
+  const [account, setAccount] = useAccount();
   return (
     <div className="absolute h-[15px] left-px overflow-auto right-px top-px" data-name="Container">
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[12px] justify-center leading-[0] left-0 not-italic text-[#8229e3] text-[11.9px] top-[7.5px] w-[52.83px]">
-        <p className="leading-[normal]">7423321</p>
-      </div>
+      <input
+        className="-translate-y-1/2 absolute font-['Inter:Bold',sans-serif] font-bold h-[15px] left-0 text-[#8229e3] text-[11.9px] top-[7.5px] w-full bg-transparent outline-none border-none p-0 m-0"
+        value={account}
+        onChange={(e) => setAccount(e.target.value)}
+      />
     </div>
   );
 }
